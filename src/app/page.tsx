@@ -3,6 +3,7 @@ import { HowItWorksSection } from "../components/landing/how-it-works-section";
 import { LiveGallerySection } from "../components/landing/live-gallery-section";
 import { PoweredByAiSection } from "../components/landing/powered-by-ai-section";
 import { SiteHeader } from "../components/landing/site-header";
+import { TrustPrivacySection } from "../components/landing/trust-privacy-section";
 
 export default function Home() {
   return (
@@ -24,6 +25,7 @@ export default function Home() {
       <PoweredByAiSection />
       <HowItWorksSection />
       <LiveGallerySection />
+      <TrustPrivacySection />
 
       <section className="ctaBand" id="pricing">
         <div>
