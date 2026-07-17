@@ -1,149 +1,185 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import Image from "next/image";
+import { useEffect, useMemo, useState } from "react";
+import styles from "./how-it-works-section.module.css";
 
 const steps = [
   {
-    number: "01",
-    title: "Sube tu foto",
-    description: "Carga una imagen clara desde tu dispositivo. La interfaz queda preparada para conectar el flujo real de carga del backend.",
+    number: "1",
+    title: "Sube",
+    detail: "Carga tu foto de forma segura",
     icon: "↑",
-    detail: "JPG, PNG o WEBP",
+    signal: "Imagen preparada",
   },
   {
-    number: "02",
-    title: "Elige tu look",
-    description: "Explora prendas y estilos disponibles, selecciona tu favorito y ajusta la experiencia antes de procesar.",
+    number: "2",
+    title: "Elige",
+    detail: "Selecciona el outfit que prefieras",
     icon: "◇",
-    detail: "Prendas y estilos",
+    signal: "Look seleccionado",
   },
   {
-    number: "03",
-    title: "Procesa con IA",
-    description: "El motor de Try-On analiza pose, proporciones y prenda para preparar un resultado visual coherente.",
+    number: "3",
+    title: "IA procesa",
+    detail: "El motor analiza pose, luz y tejido",
     icon: "✦",
-    detail: "Flujo automatizado",
+    signal: "Análisis visual activo",
   },
   {
-    number: "04",
-    title: "Guarda el resultado",
-    description: "Compara el antes y el después, revisa el resultado final y continúa hacia la experiencia completa.",
-    icon: "✓",
-    detail: "Vista comparativa",
+    number: "4",
+    title: "Disfruta",
+    detail: "Compara, guarda o comparte el resultado",
+    icon: "♡",
+    signal: "Resultado listo",
   },
-];
+] as const;
+
+const looks = [
+  { src: "/images/landing/look-1.jpg", label: "Noir" },
+  { src: "/images/landing/look-2.jpg", label: "Ivory" },
+  { src: "/images/landing/look-3.jpg", label: "Crimson" },
+  { src: "/images/landing/look-4.jpg", label: "Lace" },
+  { src: "/images/landing/look-5.jpg", label: "Denim" },
+] as const;
 
 export function HowItWorksSection() {
-  const sectionRef = useRef<HTMLElement>(null);
   const [activeStep, setActiveStep] = useState(0);
-  const [isVisible, setIsVisible] = useState(false);
+  const [activeLook, setActiveLook] = useState(2);
+  const [paused, setPaused] = useState(false);
 
   useEffect(() => {
-    const section = sectionRef.current;
-    if (!section) return;
+    if (paused) return;
 
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-          observer.disconnect();
-        }
-      },
-      { threshold: 0.22 },
-    );
+    const timer = window.setInterval(() => {
+      setActiveStep((current) => (current + 1) % steps.length);
+    }, 3400);
 
-    observer.observe(section);
-    return () => observer.disconnect();
-  }, []);
+    return () => window.clearInterval(timer);
+  }, [paused]);
+
+  const currentStep = steps[activeStep];
+  const currentLook = useMemo(() => looks[activeLook], [activeLook]);
 
   return (
     <section
-      ref={sectionRef}
-      className={`howItWorksSection${isVisible ? " isVisible" : ""}`}
+      className={styles.section}
       id="how-it-works"
       aria-labelledby="how-it-works-title"
+      onMouseEnter={() => setPaused(true)}
+      onMouseLeave={() => setPaused(false)}
+      onFocusCapture={() => setPaused(true)}
+      onBlurCapture={() => setPaused(false)}
     >
-      <div className="howItWorksBackdrop" aria-hidden="true">
-        <span className="workflowGlow workflowGlowOne" />
-        <span className="workflowGlow workflowGlowTwo" />
-        <span className="workflowLines" />
-      </div>
+      <div className={styles.noise} aria-hidden="true" />
+      <div className={styles.redWave} aria-hidden="true" />
+      <div className={styles.blueGlow} aria-hidden="true" />
 
-      <div className="workflowHeader">
-        <div>
-          <p className="sectionKicker">CÓMO FUNCIONA</p>
-          <h2 id="how-it-works-title">
-            De tu foto a un nuevo look en <em>cuatro pasos.</em>
-          </h2>
-        </div>
-        <p>
-          Una experiencia directa, clara y preparada para conectarse con el flujo real de Try-On del backend cuando implementemos su módulo público.
-        </p>
-      </div>
+      <div className={styles.mainGrid}>
+        <div className={styles.workflowColumn}>
+          <p className={styles.kicker}>CÓMO FUNCIONA</p>
 
-      <div className="workflowLayout">
-        <div className="workflowSteps" role="tablist" aria-label="Pasos del proceso Try-On">
-          {steps.map((step, index) => (
-            <button
-              key={step.number}
-              type="button"
-              role="tab"
-              aria-selected={activeStep === index}
-              aria-controls={`workflow-panel-${index}`}
-              id={`workflow-tab-${index}`}
-              className={`workflowStep${activeStep === index ? " isActive" : ""}`}
-              onClick={() => setActiveStep(index)}
-            >
-              <span className="workflowStepNumber">{step.number}</span>
-              <span className="workflowStepIcon" aria-hidden="true">{step.icon}</span>
-              <span className="workflowStepText">
-                <strong>{step.title}</strong>
-                <small>{step.detail}</small>
-              </span>
-            </button>
-          ))}
-        </div>
-
-        <div
-          className="workflowPreview"
-          role="tabpanel"
-          id={`workflow-panel-${activeStep}`}
-          aria-labelledby={`workflow-tab-${activeStep}`}
-          tabIndex={0}
-        >
-          <div className="workflowPreviewChrome">
-            <span />
-            <span />
-            <span />
-            <small>TRYON WORKFLOW</small>
-          </div>
-
-          <div className="workflowPreviewBody">
-            <div className="workflowVisual" aria-hidden="true">
-              <span className="workflowVisualHalo" />
-              <span className="workflowVisualRing workflowVisualRingOne" />
-              <span className="workflowVisualRing workflowVisualRingTwo" />
-              <span className="workflowVisualCore">{steps[activeStep].icon}</span>
-              <span className="workflowVisualScan" />
+          <div className={styles.steps} role="tablist" aria-label="Pasos del proceso Try-On">
+            <div className={styles.connector} aria-hidden="true">
+              <span style={{ width: `${(activeStep / (steps.length - 1)) * 100}%` }} />
             </div>
 
-            <div className="workflowPreviewCopy">
-              <span>PASO {steps[activeStep].number}</span>
-              <h3>{steps[activeStep].title}</h3>
-              <p>{steps[activeStep].description}</p>
-              <div className="workflowStatus">
-                <i aria-hidden="true" />
-                Interfaz preparada para integración real
-              </div>
-            </div>
-          </div>
-
-          <div className="workflowProgress" aria-hidden="true">
             {steps.map((step, index) => (
-              <span key={step.number} className={index <= activeStep ? "isComplete" : ""} />
+              <button
+                type="button"
+                role="tab"
+                aria-selected={activeStep === index}
+                aria-controls="how-it-works-visual"
+                className={`${styles.step} ${activeStep === index ? styles.stepActive : ""}`}
+                key={step.title}
+                onClick={() => setActiveStep(index)}
+              >
+                <span className={styles.iconRing} aria-hidden="true">
+                  <span>{step.icon}</span>
+                </span>
+                <span className={styles.stepTitle}>
+                  <b>{step.number}</b> {step.title}
+                </span>
+                <span className={styles.stepDetail}>{step.detail}</span>
+              </button>
             ))}
           </div>
         </div>
+
+        <div className={styles.quoteColumn} aria-live="polite">
+          <blockquote>
+            “El futuro de la moda está <em>aquí.</em>”
+          </blockquote>
+          <p>Pruébalo tú mismo.</p>
+          <span className={styles.quoteLine} />
+          <div className={styles.liveSignal}>
+            <i aria-hidden="true" />
+            {currentStep.signal}
+          </div>
+        </div>
+
+        <div className={styles.stage} id="how-it-works-visual" role="tabpanel" tabIndex={0}>
+          <div className={styles.ceilingRing} aria-hidden="true">
+            <span />
+            <span />
+            <span />
+          </div>
+          <div className={styles.floorRing} aria-hidden="true">
+            <span />
+            <span />
+            <span />
+          </div>
+          <div className={styles.lightBeam} aria-hidden="true" />
+          <div className={styles.scanLine} aria-hidden="true" />
+
+          <div className={styles.modelCard}>
+            <Image
+              src={currentLook.src}
+              alt={`Modelo adulta con el estilo ${currentLook.label} en una demostración SFW de virtual try-on`}
+              fill
+              sizes="(max-width: 780px) 78vw, 360px"
+              priority={false}
+            />
+            <div className={styles.modelShade} aria-hidden="true" />
+          </div>
+
+          <div className={styles.orbitCards} aria-label="Selecciona un look de demostración">
+            {looks.map((look, index) => (
+              <button
+                type="button"
+                className={`${styles.lookCard} ${activeLook === index ? styles.lookCardActive : ""}`}
+                style={{ "--look-index": index } as React.CSSProperties}
+                key={look.label}
+                onClick={() => setActiveLook(index)}
+                aria-pressed={activeLook === index}
+                aria-label={`Seleccionar estilo ${look.label}`}
+              >
+                <Image src={look.src} alt="" fill sizes="80px" />
+                <span>{look.label}</span>
+              </button>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <div className={styles.ctaPanel}>
+        <ul aria-label="Beneficios principales">
+          <li>Resultados ultrarrealistas</li>
+          <li>Cualquier tipo de cuerpo</li>
+          <li>Cualquier outfit</li>
+          <li>Privacidad primero</li>
+          <li>Rápido y sencillo</li>
+          <li>Mejora continua</li>
+        </ul>
+
+        <div className={styles.ctaCopy}>
+          <h3>¿Listo para ver la magia?</h3>
+          <p>Descubre los planes disponibles y prepara tu primera experiencia.</p>
+        </div>
+
+        <a className={styles.ctaButton} href="#pricing">
+          Comenzar ahora <span aria-hidden="true">→</span>
+        </a>
       </div>
     </section>
   );
