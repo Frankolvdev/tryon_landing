@@ -1,5 +1,4 @@
 import { Container } from "@/components/layout/container";
-import { BackendStatus } from "@/components/system/backend-status";
 import { Badge } from "@/components/ui/badge";
 import { ButtonLink } from "@/components/ui/button-link";
 import { SectionHeading } from "@/components/ui/section-heading";
@@ -9,21 +8,14 @@ const ArrowIcon = () => <span aria-hidden="true">→</span>;
 
 export default function HomePage() {
   return (
-    <main className="design-system-shell" id="top">
+    <main className="design-system-shell" id="main-content">
+      <span id="top" className="anchor-target" aria-hidden="true" />
       <div className="ambient ambient--one" />
       <div className="ambient ambient--two" />
       <div className="noise-layer" />
 
-      <Container as="header" className="bootstrap-header" size="wide">
-        <a className="brand" href="#top" aria-label="TRYON, inicio">
-          <span>TRY</span><strong>ON</strong>
-          <small>AI VIRTUAL TRY-ON</small>
-        </a>
-        <BackendStatus />
-      </Container>
-
       <Container as="section" className="design-system-hero" size="wide">
-        <Badge>LANDING SYSTEM · ZIP 01B</Badge>
+        <Badge>LANDING SYSTEM · ZIP 01C</Badge>
         <h1>Una identidad visual creada para convertir.</h1>
         <p className="lead">
           Tokens, componentes y patrones responsive que mantendrán consistente toda la landing,
@@ -89,10 +81,6 @@ export default function HomePage() {
         </Surface>
       </Container>
 
-      <Container as="footer" className="bootstrap-footer" size="wide">
-        <p>TRYON · AI Virtual Try-On Platform</p>
-        <p>Sistema visual listo para recibir el layout global y el hero.</p>
-      </Container>
     </main>
   );
 }
