@@ -3,6 +3,7 @@ import { HowItWorksSection } from "../components/landing/how-it-works-section";
 import { LiveGallerySection } from "../components/landing/live-gallery-section";
 import { PoweredByAiSection } from "../components/landing/powered-by-ai-section";
 import { SiteHeader } from "../components/landing/site-header";
+import { SocialProofSection } from "../components/landing/social-proof-section";
 import { TrustPrivacySection } from "../components/landing/trust-privacy-section";
 import { PricingSection } from "../features/pricing/components/pricing-section";
 
@@ -27,6 +28,7 @@ export default function Home() {
       <HowItWorksSection />
       <LiveGallerySection />
       <TrustPrivacySection />
+      <SocialProofSection />
       <PricingSection />
 
       <section className="ctaBand">
