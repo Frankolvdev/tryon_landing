@@ -1,86 +1,40 @@
 import { Container } from "@/components/layout/container";
-import { Badge } from "@/components/ui/badge";
-import { ButtonLink } from "@/components/ui/button-link";
+import { HeroSection } from "@/components/landing/hero-section";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { Surface } from "@/components/ui/surface";
 
-const ArrowIcon = () => <span aria-hidden="true">→</span>;
-
 export default function HomePage() {
   return (
-    <main className="design-system-shell" id="main-content">
+    <main className="landing-page" id="main-content">
       <span id="top" className="anchor-target" aria-hidden="true" />
-      <div className="ambient ambient--one" />
-      <div className="ambient ambient--two" />
       <div className="noise-layer" />
+      <HeroSection />
 
-      <Container as="section" className="design-system-hero" size="wide">
-        <Badge>LANDING SYSTEM · ZIP 01C</Badge>
-        <h1>Una identidad visual creada para convertir.</h1>
-        <p className="lead">
-          Tokens, componentes y patrones responsive que mantendrán consistente toda la landing,
-          desde el hero hasta planes, autenticación y experiencias conectadas al backend.
-        </p>
-        <div className="bootstrap-actions">
-          <ButtonLink href="#components" icon={<ArrowIcon />}>Explorar sistema</ButtonLink>
-          <ButtonLink href="#principles" variant="secondary">Ver principios</ButtonLink>
-        </div>
-      </Container>
-
-      <Container as="section" id="principles" className="system-section" size="wide">
+      <Container as="section" id="experiencia" className="system-section landing-preview-section" size="wide">
         <SectionHeading
-          eyebrow="BASE VISUAL"
-          title={<>Diseñado para verse premium en <em>cada pantalla</em>.</>}
-          description="El sistema usa escalas fluidas, superficies cinematográficas, estados accesibles y componentes reutilizables sin agregar dependencias externas."
+          eyebrow="EXPERIENCIA TRY-ON"
+          title={<>Tecnología que convierte una idea en una <em>vista convincente</em>.</>}
+          description="Esta primera estructura prepara el espacio para el comparador interactivo, la selección de prendas y la carga real de imágenes que incorporaremos en los próximos módulos."
         />
 
-        <div className="principles-grid">
+        <div className="principles-grid" id="como-funciona">
           <Surface>
             <span className="card-index">01</span>
-            <h3>Escala fluida</h3>
-            <p>Espaciados y tipografía se adaptan suavemente entre móvil, tableta y escritorio.</p>
+            <h3>Sube tu imagen</h3>
+            <p>Una experiencia guiada y responsive preparada para móvil, tableta y escritorio.</p>
           </Surface>
           <Surface accent>
             <span className="card-index">02</span>
-            <h3>Contraste premium</h3>
-            <p>Negro, grafito y rojo profundo con estados legibles y focos visibles.</p>
+            <h3>Elige tu estilo</h3>
+            <p>Explora prendas y opciones disponibles sin romper el flujo de navegación.</p>
           </Surface>
           <Surface>
             <span className="card-index">03</span>
-            <h3>Componentes reales</h3>
-            <p>Botones, badges, contenedores y tarjetas listos para módulos dinámicos.</p>
+            <h3>Visualiza el resultado</h3>
+            <p>Compara el antes y después con controles claros, accesibles y táctiles.</p>
           </Surface>
         </div>
       </Container>
-
-      <Container as="section" id="components" className="system-section" size="wide">
-        <SectionHeading
-          eyebrow="COMPONENTES"
-          title="Bloques reutilizables para toda la experiencia."
-          align="center"
-        />
-
-        <Surface as="div" className="component-showcase" accent>
-          <div className="component-showcase__group">
-            <span className="component-label">Acciones</span>
-            <div className="component-row">
-              <ButtonLink href="#top" icon={<ArrowIcon />}>Comenzar ahora</ButtonLink>
-              <ButtonLink href="#top" variant="secondary">Ver demostración</ButtonLink>
-              <ButtonLink href="#top" variant="ghost" size="small">Más información</ButtonLink>
-            </div>
-          </div>
-
-          <div className="component-showcase__group">
-            <span className="component-label">Estados</span>
-            <div className="component-row">
-              <Badge>IA TRY-ON</Badge>
-              <Badge tone="success">Backend conectado</Badge>
-              <Badge tone="neutral">Responsive</Badge>
-            </div>
-          </div>
-        </Surface>
-      </Container>
-
     </main>
   );
 }

@@ -7,8 +7,8 @@ import { BackendStatus } from "@/components/system/backend-status";
 import { ButtonLink } from "@/components/ui/button-link";
 
 const navigation = [
-  { href: "/#principles", label: "Tecnología" },
-  { href: "/#components", label: "Experiencia" },
+  { href: "/#experiencia", label: "Experiencia" },
+  { href: "/#como-funciona", label: "Cómo funciona" },
   { href: "/#plans", label: "Planes", pending: true },
   { href: "/#faq", label: "FAQ", pending: true },
 ];
@@ -43,7 +43,7 @@ export function SiteHeader() {
 
         <div className="site-header__actions">
           <BackendStatus />
-          <ButtonLink href="/#components" size="small">Comenzar</ButtonLink>
+          <ButtonLink href="/#experiencia" size="small">Comenzar</ButtonLink>
           <button
             className="menu-toggle"
             type="button"
@@ -74,7 +74,7 @@ export function SiteHeader() {
               </a>
             ))}
           </nav>
-          <ButtonLink href="/#components" size="large" onClick={closeMenu}>Crear mi experiencia</ButtonLink>
+          <ButtonLink href="/#experiencia" size="large" onClick={closeMenu}>Crear mi experiencia</ButtonLink>
         </Container>
       </div>
     </header>
