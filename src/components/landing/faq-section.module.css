@@ -1,0 +1,318 @@
+.section {
+  position: relative;
+  overflow: hidden;
+  padding: clamp(5rem, 9vw, 8.5rem) clamp(1rem, 4vw, 4rem);
+  border-top: 1px solid rgba(255, 255, 255, 0.07);
+  background:
+    radial-gradient(circle at 10% 10%, rgba(255, 20, 55, 0.1), transparent 34%),
+    radial-gradient(circle at 95% 90%, rgba(25, 88, 255, 0.1), transparent 31%),
+    linear-gradient(180deg, #050811 0%, #02040a 100%);
+}
+
+.section::before {
+  position: absolute;
+  inset: 0;
+  content: "";
+  pointer-events: none;
+  opacity: 0.2;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+  background-size: 54px 54px;
+  mask-image: linear-gradient(to bottom, transparent, black 18%, black 78%, transparent);
+}
+
+.glow {
+  position: absolute;
+  width: 34rem;
+  height: 34rem;
+  right: -17rem;
+  top: 10%;
+  border-radius: 999px;
+  background: rgba(255, 0, 47, 0.14);
+  filter: blur(110px);
+  pointer-events: none;
+}
+
+.inner {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: minmax(16rem, 0.72fr) minmax(28rem, 1.28fr);
+  gap: clamp(2.5rem, 7vw, 7.5rem);
+  width: min(1180px, 100%);
+  margin: 0 auto;
+  align-items: start;
+}
+
+.headingBlock {
+  position: sticky;
+  top: 7rem;
+}
+
+.kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1.3rem;
+  color: #ff2848;
+  font-size: 0.76rem;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+}
+
+.kicker::before {
+  width: 2.4rem;
+  height: 1px;
+  content: "";
+  background: linear-gradient(90deg, transparent, #ff2848);
+}
+
+.headingBlock h2 {
+  max-width: 10ch;
+  margin: 0;
+  color: #f7f9ff;
+  font-size: clamp(2.5rem, 5vw, 4.7rem);
+  font-weight: 560;
+  letter-spacing: -0.055em;
+  line-height: 0.98;
+}
+
+.headingBlock h2 em {
+  display: block;
+  color: #ff2346;
+  font-family: Georgia, serif;
+  font-weight: 500;
+}
+
+.headingBlock > p {
+  max-width: 34rem;
+  margin: 1.5rem 0 0;
+  color: rgba(225, 232, 247, 0.67);
+  font-size: 1rem;
+  line-height: 1.75;
+}
+
+.supportCard {
+  display: flex;
+  gap: 1rem;
+  margin-top: 2rem;
+  padding: 1.15rem;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 1.15rem;
+  background: rgba(255, 255, 255, 0.025);
+  backdrop-filter: blur(16px);
+}
+
+.supportIcon {
+  display: grid;
+  flex: 0 0 auto;
+  width: 2.5rem;
+  height: 2.5rem;
+  place-items: center;
+  border: 1px solid rgba(255, 36, 69, 0.44);
+  border-radius: 999px;
+  color: #ff3654;
+  background: rgba(255, 25, 56, 0.08);
+  box-shadow: 0 0 28px rgba(255, 22, 55, 0.14);
+  font-weight: 800;
+}
+
+.supportCard strong {
+  color: #fff;
+  font-size: 0.9rem;
+}
+
+.supportCard p {
+  margin: 0.35rem 0 0;
+  color: rgba(220, 228, 243, 0.56);
+  font-size: 0.78rem;
+  line-height: 1.55;
+}
+
+.list {
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.item {
+  position: relative;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  transition: background 240ms ease, border-color 240ms ease;
+}
+
+.item::before {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  content: "";
+  opacity: 0;
+  transform: scaleY(0.3);
+  background: #ff2447;
+  box-shadow: 0 0 22px rgba(255, 29, 68, 0.8);
+  transition: opacity 220ms ease, transform 300ms ease;
+}
+
+.itemOpen {
+  border-color: rgba(255, 48, 79, 0.28);
+  background: linear-gradient(90deg, rgba(255, 20, 55, 0.06), transparent 60%);
+}
+
+.itemOpen::before {
+  opacity: 1;
+  transform: scaleY(1);
+}
+
+.trigger {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 1.15rem;
+  width: 100%;
+  padding: 1.65rem 1.25rem;
+  border: 0;
+  color: inherit;
+  text-align: left;
+  background: transparent;
+  cursor: pointer;
+}
+
+.trigger:focus-visible {
+  outline: 2px solid #ff3151;
+  outline-offset: -3px;
+}
+
+.number {
+  padding-top: 0.2rem;
+  color: rgba(255, 255, 255, 0.3);
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+}
+
+.questionWrap {
+  display: grid;
+  gap: 0.35rem;
+}
+
+.questionWrap small {
+  color: #ff3452;
+  font-size: 0.61rem;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+}
+
+.questionWrap strong {
+  color: #f5f7fb;
+  font-size: clamp(1rem, 1.55vw, 1.24rem);
+  font-weight: 570;
+  letter-spacing: -0.015em;
+}
+
+.toggle {
+  position: relative;
+  width: 2.15rem;
+  height: 2.15rem;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 999px;
+  transition: transform 260ms ease, border-color 260ms ease, background 260ms ease;
+}
+
+.toggle i {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 0.72rem;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.75);
+  transform: translate(-50%, -50%);
+  transition: transform 260ms ease, background 260ms ease;
+}
+
+.toggle i:last-child {
+  transform: translate(-50%, -50%) rotate(90deg);
+}
+
+.itemOpen .toggle {
+  border-color: rgba(255, 47, 77, 0.58);
+  background: rgba(255, 31, 65, 0.1);
+  transform: rotate(180deg);
+}
+
+.itemOpen .toggle i {
+  background: #ff3452;
+}
+
+.itemOpen .toggle i:last-child {
+  transform: translate(-50%, -50%) rotate(0deg);
+}
+
+.answerGrid {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 360ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.itemOpen .answerGrid {
+  grid-template-rows: 1fr;
+}
+
+.answerInner {
+  overflow: hidden;
+}
+
+.answerInner p {
+  max-width: 58rem;
+  margin: 0;
+  padding: 0 4rem 1.65rem 4.3rem;
+  color: rgba(220, 228, 243, 0.67);
+  font-size: 0.92rem;
+  line-height: 1.78;
+}
+
+@media (max-width: 900px) {
+  .inner {
+    grid-template-columns: 1fr;
+  }
+
+  .headingBlock {
+    position: static;
+  }
+
+  .headingBlock h2 {
+    max-width: 14ch;
+  }
+}
+
+@media (max-width: 560px) {
+  .section {
+    padding-inline: 0.85rem;
+  }
+
+  .trigger {
+    gap: 0.75rem;
+    padding: 1.35rem 0.75rem;
+  }
+
+  .number {
+    display: none;
+  }
+
+  .answerInner p {
+    padding: 0 3.2rem 1.4rem 0.75rem;
+  }
+
+  .supportCard {
+    align-items: flex-start;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .item,
+  .item::before,
+  .toggle,
+  .toggle i,
+  .answerGrid {
+    transition: none;
+  }
+}

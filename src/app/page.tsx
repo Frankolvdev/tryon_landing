@@ -1,3 +1,4 @@
+import { FaqSection } from "../components/landing/faq-section";
 import { HeroSection } from "../components/landing/hero-section";
 import { HowItWorksSection } from "../components/landing/how-it-works-section";
 import { LiveGallerySection } from "../components/landing/live-gallery-section";
@@ -30,6 +31,7 @@ export default function Home() {
       <TrustPrivacySection />
       <SocialProofSection />
       <PricingSection />
+      <FaqSection />
 
       <section className="ctaBand">
         <div>
