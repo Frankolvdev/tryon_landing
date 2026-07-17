@@ -1,4 +1,5 @@
 import { HeroSection } from "../components/landing/hero-section";
+import { AiFloatingModelSection } from "../components/landing/ai-floating-model-section";
 import { HowItWorksSection } from "../components/landing/how-it-works-section";
 import { LiveGallerySection } from "../components/landing/live-gallery-section";
 import { PoweredByAiSection } from "../components/landing/powered-by-ai-section";
@@ -26,6 +27,7 @@ export default function Home() {
 
       <PoweredByAiSection />
       <HowItWorksSection />
+      <AiFloatingModelSection />
       <LiveGallerySection />
       <TrustPrivacySection />
       <SocialProofSection />
