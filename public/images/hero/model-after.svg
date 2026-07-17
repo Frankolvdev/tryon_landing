@@ -1,0 +1,24 @@
+<svg width="720" height="960" viewBox="0 0 720 960" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="360" y1="0" x2="360" y2="960" gradientUnits="userSpaceOnUse"><stop stop-color="#34101A"/><stop offset="0.52" stop-color="#12090F"/><stop offset="1" stop-color="#05070C"/></linearGradient>
+    <radialGradient id="halo" cx="0" cy="0" r="1" gradientTransform="translate(360 348) rotate(90) scale(420 350)" gradientUnits="userSpaceOnUse"><stop stop-color="#FF2347" stop-opacity="0.42"/><stop offset="1" stop-color="#6A1022" stop-opacity="0"/></radialGradient>
+    <linearGradient id="skin" x1="323" y1="162" x2="423" y2="350" gradientUnits="userSpaceOnUse"><stop stop-color="#D7B59F"/><stop offset="1" stop-color="#8A6258"/></linearGradient>
+    <linearGradient id="dress" x1="230" y1="348" x2="510" y2="900" gradientUnits="userSpaceOnUse"><stop stop-color="#FF284C"/><stop offset="0.36" stop-color="#A40D2A"/><stop offset="1" stop-color="#310712"/></linearGradient>
+    <linearGradient id="shine" x1="255" y1="350" x2="460" y2="790" gradientUnits="userSpaceOnUse"><stop stop-color="white" stop-opacity="0.42"/><stop offset="0.36" stop-color="white" stop-opacity="0.06"/><stop offset="1" stop-color="white" stop-opacity="0"/></linearGradient>
+    <filter id="shadow" x="100" y="90" width="520" height="880" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB"><feDropShadow dx="0" dy="30" stdDeviation="32" flood-color="#FF1538" flood-opacity="0.24"/><feDropShadow dx="0" dy="24" stdDeviation="26" flood-color="#000" flood-opacity="0.62"/></filter>
+  </defs>
+  <rect width="720" height="960" rx="42" fill="url(#bg)"/><rect width="720" height="960" rx="42" fill="url(#halo)"/>
+  <g opacity="0.13"><path d="M0 160H720M0 320H720M0 480H720M0 640H720M0 800H720" stroke="#FF7189"/><path d="M120 0V960M240 0V960M360 0V960M480 0V960M600 0V960" stroke="#FF7189"/></g>
+  <g filter="url(#shadow)">
+    <ellipse cx="360" cy="226" rx="73" ry="89" fill="url(#skin)"/>
+    <path d="M294 203C300 116 420 103 439 190C431 151 399 130 357 132C320 134 298 160 294 203Z" fill="#17151B"/>
+    <path d="M260 355C289 318 325 301 360 302C398 302 434 318 463 355L527 510L474 558L493 895H227L246 558L193 510L260 355Z" fill="url(#dress)"/>
+    <path d="M271 346C315 373 405 373 449 346" stroke="#FF9CAF" stroke-opacity="0.7" stroke-width="5"/>
+    <path d="M246 557C313 582 406 582 474 557" stroke="#4A0715" stroke-opacity="0.75" stroke-width="8"/>
+    <path d="M276 354C319 384 335 695 309 884H263L269 570L218 501L276 354Z" fill="url(#shine)" opacity="0.55"/>
+    <path d="M228 895H493" stroke="#FF9DB0" stroke-opacity="0.4" stroke-width="4"/>
+  </g>
+  <path d="M545 160L557 200L597 212L557 224L545 264L533 224L493 212L533 200L545 160Z" fill="#FF3657" fill-opacity="0.9"/>
+  <path d="M588 278L594 298L614 304L594 310L588 330L582 310L562 304L582 298L588 278Z" fill="#FF9CAF"/>
+  <rect x="26" y="26" width="668" height="908" rx="26" stroke="#FF8DA2" stroke-opacity="0.2"/>
+</svg>

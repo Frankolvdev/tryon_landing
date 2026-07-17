@@ -1,0 +1,31 @@
+<svg width="720" height="960" viewBox="0 0 720 960" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="360" y1="0" x2="360" y2="960" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#202A3D"/><stop offset="0.55" stop-color="#0D121D"/><stop offset="1" stop-color="#05070C"/>
+    </linearGradient>
+    <radialGradient id="halo" cx="0" cy="0" r="1" gradientTransform="translate(360 350) rotate(90) scale(390 330)" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#7187C8" stop-opacity="0.45"/><stop offset="1" stop-color="#263252" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="skin" x1="323" y1="162" x2="423" y2="350" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#D7B59F"/><stop offset="1" stop-color="#8A6258"/>
+    </linearGradient>
+    <linearGradient id="dress" x1="230" y1="348" x2="510" y2="900" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#59667A"/><stop offset="0.45" stop-color="#2D3543"/><stop offset="1" stop-color="#111620"/>
+    </linearGradient>
+    <filter id="shadow" x="110" y="100" width="500" height="860" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feDropShadow dx="0" dy="28" stdDeviation="28" flood-color="#000" flood-opacity="0.55"/>
+    </filter>
+  </defs>
+  <rect width="720" height="960" rx="42" fill="url(#bg)"/>
+  <rect width="720" height="960" rx="42" fill="url(#halo)"/>
+  <g opacity="0.18"><path d="M0 160H720M0 320H720M0 480H720M0 640H720M0 800H720" stroke="white"/><path d="M120 0V960M240 0V960M360 0V960M480 0V960M600 0V960" stroke="white"/></g>
+  <g filter="url(#shadow)">
+    <ellipse cx="360" cy="226" rx="73" ry="89" fill="url(#skin)"/>
+    <path d="M294 203C300 116 420 103 439 190C431 151 399 130 357 132C320 134 298 160 294 203Z" fill="#171B25"/>
+    <path d="M260 355C289 318 325 301 360 302C398 302 434 318 463 355L527 510L474 558L493 895H227L246 558L193 510L260 355Z" fill="url(#dress)"/>
+    <path d="M272 348C315 373 404 373 448 348" stroke="#8390A4" stroke-opacity="0.45" stroke-width="5"/>
+    <path d="M243 557C313 582 406 582 477 557" stroke="#0B0E15" stroke-opacity="0.65" stroke-width="8"/>
+    <path d="M228 895H493" stroke="#B4C0D3" stroke-opacity="0.2" stroke-width="4"/>
+  </g>
+  <rect x="26" y="26" width="668" height="908" rx="26" stroke="white" stroke-opacity="0.12"/>
+</svg>
