@@ -1,54 +1,98 @@
+import { Container } from "@/components/layout/container";
 import { BackendStatus } from "@/components/system/backend-status";
+import { Badge } from "@/components/ui/badge";
+import { ButtonLink } from "@/components/ui/button-link";
+import { SectionHeading } from "@/components/ui/section-heading";
+import { Surface } from "@/components/ui/surface";
+
+const ArrowIcon = () => <span aria-hidden="true">→</span>;
 
 export default function HomePage() {
   return (
-    <main className="bootstrap-shell">
+    <main className="design-system-shell" id="top">
       <div className="ambient ambient--one" />
       <div className="ambient ambient--two" />
+      <div className="noise-layer" />
 
-      <header className="bootstrap-header">
+      <Container as="header" className="bootstrap-header" size="wide">
         <a className="brand" href="#top" aria-label="TRYON, inicio">
           <span>TRY</span><strong>ON</strong>
           <small>AI VIRTUAL TRY-ON</small>
         </a>
         <BackendStatus />
-      </header>
+      </Container>
 
-      <section id="top" className="bootstrap-hero">
-        <p className="eyebrow">FRONTEND FOUNDATION · ZIP 01A</p>
-        <h1>La base profesional de tu experiencia <em>Try-On</em>.</h1>
+      <Container as="section" className="design-system-hero" size="wide">
+        <Badge>LANDING SYSTEM · ZIP 01B</Badge>
+        <h1>Una identidad visual creada para convertir.</h1>
         <p className="lead">
-          Next.js, TypeScript, diseño responsive y cliente API real preparado para integrar
-          planes, precios, autenticación y generación con los endpoints existentes.
+          Tokens, componentes y patrones responsive que mantendrán consistente toda la landing,
+          desde el hero hasta planes, autenticación y experiencias conectadas al backend.
         </p>
         <div className="bootstrap-actions">
-          <a className="button button--primary" href="#foundation">Ver preparación</a>
-          <a className="button button--secondary" href="#api">Revisar API</a>
+          <ButtonLink href="#components" icon={<ArrowIcon />}>Explorar sistema</ButtonLink>
+          <ButtonLink href="#principles" variant="secondary">Ver principios</ButtonLink>
         </div>
-      </section>
+      </Container>
 
-      <section id="foundation" className="foundation-grid" aria-label="Base del proyecto">
-        <article className="foundation-card">
-          <span>01</span>
-          <h2>Arquitectura incremental</h2>
-          <p>Preparada para recibir cada ZIP sin reescribir módulos anteriores.</p>
-        </article>
-        <article className="foundation-card">
-          <span>02</span>
-          <h2>Responsive desde el inicio</h2>
-          <p>Escalas, contenedores y composición fluidos para móvil, tableta y escritorio.</p>
-        </article>
-        <article id="api" className="foundation-card foundation-card--accent">
-          <span>03</span>
-          <h2>Backend real</h2>
-          <p>Cliente tipado, errores controlados, timeout y verificación del endpoint `/health`.</p>
-        </article>
-      </section>
+      <Container as="section" id="principles" className="system-section" size="wide">
+        <SectionHeading
+          eyebrow="BASE VISUAL"
+          title={<>Diseñado para verse premium en <em>cada pantalla</em>.</>}
+          description="El sistema usa escalas fluidas, superficies cinematográficas, estados accesibles y componentes reutilizables sin agregar dependencias externas."
+        />
 
-      <footer className="bootstrap-footer">
+        <div className="principles-grid">
+          <Surface>
+            <span className="card-index">01</span>
+            <h3>Escala fluida</h3>
+            <p>Espaciados y tipografía se adaptan suavemente entre móvil, tableta y escritorio.</p>
+          </Surface>
+          <Surface accent>
+            <span className="card-index">02</span>
+            <h3>Contraste premium</h3>
+            <p>Negro, grafito y rojo profundo con estados legibles y focos visibles.</p>
+          </Surface>
+          <Surface>
+            <span className="card-index">03</span>
+            <h3>Componentes reales</h3>
+            <p>Botones, badges, contenedores y tarjetas listos para módulos dinámicos.</p>
+          </Surface>
+        </div>
+      </Container>
+
+      <Container as="section" id="components" className="system-section" size="wide">
+        <SectionHeading
+          eyebrow="COMPONENTES"
+          title="Bloques reutilizables para toda la experiencia."
+          align="center"
+        />
+
+        <Surface as="div" className="component-showcase" accent>
+          <div className="component-showcase__group">
+            <span className="component-label">Acciones</span>
+            <div className="component-row">
+              <ButtonLink href="#top" icon={<ArrowIcon />}>Comenzar ahora</ButtonLink>
+              <ButtonLink href="#top" variant="secondary">Ver demostración</ButtonLink>
+              <ButtonLink href="#top" variant="ghost" size="small">Más información</ButtonLink>
+            </div>
+          </div>
+
+          <div className="component-showcase__group">
+            <span className="component-label">Estados</span>
+            <div className="component-row">
+              <Badge>IA TRY-ON</Badge>
+              <Badge tone="success">Backend conectado</Badge>
+              <Badge tone="neutral">Responsive</Badge>
+            </div>
+          </div>
+        </Surface>
+      </Container>
+
+      <Container as="footer" className="bootstrap-footer" size="wide">
         <p>TRYON · AI Virtual Try-On Platform</p>
-        <p>La landing completa se incorporará módulo por módulo.</p>
-      </footer>
+        <p>Sistema visual listo para recibir el layout global y el hero.</p>
+      </Container>
     </main>
   );
 }
