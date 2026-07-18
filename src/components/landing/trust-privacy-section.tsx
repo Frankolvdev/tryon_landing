@@ -54,17 +54,31 @@ export function TrustPrivacySection() {
   return (
     <section className={styles.section} id="security" aria-labelledby="trust-title">
       <div className={styles.ambient} aria-hidden="true" />
-      <span className={styles.lightSweep} aria-hidden="true" />
 
       <div className={styles.heading}>
         <p>CONFIANZA DESDE EL PRIMER CLIC</p>
         <h2 id="trust-title">
           Tecnología avanzada. <em>Experiencia responsable.</em>
         </h2>
-        <span>
-          La landing explica con claridad qué es demostrativo y qué estará conectado al sistema real,
-          sin métricas, testimonios ni promesas técnicas inventadas.
-        </span>
+        <div className={styles.trustIntro}>
+          <div className={styles.trustVisual} aria-hidden="true">
+            <div className={styles.hudGrid} />
+            <div className={styles.scanLine} />
+            <div className={styles.securityCore}>
+              <span className={styles.coreRing} />
+              <span className={styles.coreRingInner} />
+              <span className={styles.shield}>✓</span>
+            </div>
+            <span className={`${styles.signal} ${styles.signalPrivacy}`}>Privacidad</span>
+            <span className={`${styles.signal} ${styles.signalReal}`}>Tecnología real</span>
+            <span className={`${styles.signal} ${styles.signalClear}`}>Transparencia</span>
+            <span className={`${styles.signal} ${styles.signalResponsible}`}>Uso responsable</span>
+          </div>
+          <p>
+            La landing explica con claridad qué es demostrativo y qué estará conectado al sistema real,
+            sin métricas, testimonios ni promesas técnicas inventadas.
+          </p>
+        </div>
       </div>
 
       <div className={styles.layout}>

@@ -295,3 +295,195 @@
   .tabActive,
   .arrow { transition: none; }
 }
+
+/* 06W: visual de confianza localizado en el encabezado */
+.trustIntro {
+  display: grid;
+  gap: 1rem;
+  align-self: start;
+  min-width: 0;
+}
+
+.trustIntro > p {
+  margin: 0;
+  color: #9d9aa5;
+  font-size: clamp(.98rem, 1.4vw, 1.12rem);
+  line-height: 1.7;
+}
+
+.trustVisual {
+  position: relative;
+  min-height: clamp(15rem, 24vw, 19rem);
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, .09);
+  border-radius: 1.35rem;
+  background:
+    radial-gradient(circle at 50% 52%, rgba(226, 40, 67, .17), transparent 34%),
+    radial-gradient(circle at 12% 20%, rgba(32, 117, 255, .13), transparent 42%),
+    linear-gradient(145deg, rgba(255,255,255,.045), rgba(255,255,255,.012)),
+    #080a10;
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,.018), 0 24px 70px rgba(0,0,0,.34);
+}
+
+.trustVisual::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(112deg, transparent 25%, rgba(255,255,255,.055) 48%, transparent 68%);
+  transform: translateX(-115%);
+  animation: trustSweep 7.5s ease-in-out infinite;
+  pointer-events: none;
+}
+
+.hudGrid {
+  position: absolute;
+  inset: 0;
+  opacity: .22;
+  background-image:
+    linear-gradient(rgba(73, 132, 255, .12) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(239, 53, 79, .11) 1px, transparent 1px);
+  background-size: 31px 31px;
+  mask-image: radial-gradient(circle at 50% 55%, #000 10%, transparent 78%);
+}
+
+.scanLine {
+  position: absolute;
+  left: 8%;
+  right: 8%;
+  top: 18%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(54, 132, 255, .78), #ff405b, transparent);
+  box-shadow: 0 0 18px rgba(255, 64, 91, .55);
+  animation: scanTrust 4.8s ease-in-out infinite;
+}
+
+.securityCore {
+  position: absolute;
+  left: 50%;
+  top: 48%;
+  width: 8.4rem;
+  aspect-ratio: 1;
+  transform: translate(-50%, -50%);
+  display: grid;
+  place-items: center;
+}
+
+.securityCore::before,
+.securityCore::after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+}
+
+.securityCore::before {
+  inset: -1rem;
+  border: 1px solid rgba(255, 64, 91, .24);
+  border-top-color: #ff405b;
+  border-left-color: rgba(73, 132, 255, .75);
+  animation: spin 11s linear infinite;
+}
+
+.securityCore::after {
+  inset: .45rem;
+  border: 1px dashed rgba(255,255,255,.16);
+  animation: spin 8s linear infinite reverse;
+}
+
+.coreRing,
+.coreRingInner {
+  position: absolute;
+  border-radius: 50%;
+  border: 1px solid rgba(255,255,255,.1);
+}
+
+.coreRing { inset: -2rem; }
+.coreRingInner { inset: 1.45rem; box-shadow: inset 0 0 28px rgba(239,53,79,.13); }
+
+.shield {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  place-items: center;
+  width: 4.4rem;
+  height: 5rem;
+  color: #fff;
+  font-size: 1.9rem;
+  font-weight: 900;
+  background: linear-gradient(160deg, rgba(41, 99, 198, .82), rgba(181, 23, 48, .9));
+  clip-path: polygon(50% 0, 92% 16%, 83% 72%, 50% 100%, 17% 72%, 8% 16%);
+  box-shadow: 0 0 34px rgba(255,64,91,.34), 0 0 50px rgba(39,117,255,.18);
+  animation: coreFloat 3.6s ease-in-out infinite;
+}
+
+.signal {
+  position: absolute;
+  display: inline-flex;
+  align-items: center;
+  gap: .45rem;
+  padding: .48rem .66rem;
+  border: 1px solid rgba(255,255,255,.09);
+  border-radius: .65rem;
+  color: #c9c7cf;
+  background: rgba(6, 8, 13, .72);
+  backdrop-filter: blur(10px);
+  font-size: .62rem;
+  font-weight: 800;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  box-shadow: 0 10px 28px rgba(0,0,0,.26);
+}
+
+.signal::before {
+  content: "";
+  width: .42rem;
+  height: .42rem;
+  border-radius: 50%;
+  background: #ff405b;
+  box-shadow: 0 0 10px rgba(255,64,91,.8);
+}
+
+.signalPrivacy { left: 6%; top: 18%; }
+.signalReal { right: 5%; top: 24%; }
+.signalClear { left: 5%; bottom: 14%; }
+.signalResponsible { right: 5%; bottom: 12%; }
+.signalReal::before,
+.signalClear::before { background: #4f91ff; box-shadow: 0 0 10px rgba(79,145,255,.8); }
+
+@keyframes trustSweep {
+  0%, 48% { transform: translateX(-115%); opacity: 0; }
+  58% { opacity: 1; }
+  76%, 100% { transform: translateX(115%); opacity: 0; }
+}
+
+@keyframes scanTrust {
+  0%, 100% { transform: translateY(0); opacity: .25; }
+  50% { transform: translateY(9rem); opacity: .85; }
+}
+
+@keyframes coreFloat {
+  0%, 100% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(-.35rem) scale(1.025); }
+}
+
+@media (max-width: 900px) {
+  .trustIntro { max-width: 44rem; }
+  .trustVisual { min-height: 17rem; }
+}
+
+@media (max-width: 620px) {
+  .trustVisual { min-height: 15.5rem; }
+  .securityCore { width: 7rem; }
+  .signal { font-size: .53rem; padding: .4rem .52rem; }
+  .signalPrivacy { left: 4%; top: 12%; }
+  .signalReal { right: 3%; top: 17%; }
+  .signalClear { left: 3%; bottom: 9%; }
+  .signalResponsible { right: 3%; bottom: 8%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .trustVisual::before,
+  .scanLine,
+  .securityCore::before,
+  .securityCore::after,
+  .shield { animation: none; }
+}
