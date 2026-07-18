@@ -951,3 +951,73 @@
   .platformGlow,
   .particleField { animation: none !important; }
 }
+
+/* 06Z: escena WebGL con profundidad y oclusión reales */
+.trustVisual {
+  min-height: clamp(23rem, 35vw, 31rem);
+  background:
+    radial-gradient(circle at 50% 48%, rgba(255, 38, 78, .16), transparent 32%),
+    radial-gradient(circle at 18% 24%, rgba(57, 143, 255, .12), transparent 42%),
+    linear-gradient(145deg, rgba(255,255,255,.038), rgba(255,255,255,.009)),
+    #06080d;
+}
+
+.trustVisual :global(.holographic-fashion-canvas) {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  cursor: grab;
+}
+
+.trustVisual :global(.holographic-fashion-canvas):active {
+  cursor: grabbing;
+}
+
+.holoBackdrop {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background-image:
+    linear-gradient(rgba(255, 54, 89, .055) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(74, 163, 255, .045) 1px, transparent 1px);
+  background-size: 34px 34px;
+  mask-image: radial-gradient(circle at 50% 54%, #000 14%, transparent 78%);
+  pointer-events: none;
+}
+
+.sceneBadge {
+  position: absolute;
+  left: 1rem;
+  bottom: 1rem;
+  z-index: 4;
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .55rem .75rem;
+  border: 1px solid rgba(255,255,255,.1);
+  border-radius: 999px;
+  color: rgba(239, 242, 250, .78);
+  background: rgba(5, 7, 12, .62);
+  backdrop-filter: blur(10px);
+  font-size: .66rem;
+  font-weight: 800;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+.sceneBadge span {
+  width: .42rem;
+  height: .42rem;
+  border-radius: 50%;
+  background: #54c7ff;
+  box-shadow: 0 0 12px rgba(84, 199, 255, .9);
+}
+
+@media (max-width: 900px) {
+  .trustVisual { min-height: 26rem; }
+}
+
+@media (max-width: 620px) {
+  .trustVisual { min-height: 22rem; }
+  .sceneBadge { left: .75rem; bottom: .75rem; font-size: .58rem; }
+}

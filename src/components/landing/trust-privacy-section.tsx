@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import styles from "./trust-privacy-section.module.css";
+import { HolographicFashionScene } from "./holographic-fashion-scene";
 
 type TrustItem = {
   id: string;
@@ -63,39 +64,10 @@ export function TrustPrivacySection() {
         <div className={styles.trustIntro}>
           <div className={styles.trustVisual} aria-hidden="true">
             <div className={styles.holoBackdrop} />
-            <div className={styles.holoFigure}>
-              <img
-                src="/images/landing/trust/holographic-fashion-core.webp"
-                alt=""
-                className={styles.holoFigureImage}
-              />
-              <span className={styles.figureScan} />
-              <span className={styles.figureGlow} />
+            <HolographicFashionScene />
+            <div className={styles.sceneBadge}>
+              <span /> Profundidad 3D real
             </div>
-
-            <div className={styles.orbitScene}>
-              <div className={`${styles.garmentCard} ${styles.garmentDress}`}>
-                <svg viewBox="0 0 90 110" role="presentation"><path d="M36 10h18l5 18 17 50-31 20-31-20 17-50z" /></svg>
-                <span>Vestido</span>
-              </div>
-              <div className={`${styles.garmentCard} ${styles.garmentTop}`}>
-                <svg viewBox="0 0 90 110" role="presentation"><path d="M29 16l16-8 16 8 16 15-12 14-6-8v49H31V37l-6 8-12-14z" /></svg>
-                <span>Top</span>
-              </div>
-              <div className={`${styles.garmentCard} ${styles.garmentShorts}`}>
-                <svg viewBox="0 0 90 110" role="presentation"><path d="M20 20h50l-4 58-21-10-21 10zM45 20v48" /></svg>
-                <span>Shorts</span>
-              </div>
-              <div className={`${styles.garmentCard} ${styles.garmentJacket}`}>
-                <svg viewBox="0 0 90 110" role="presentation"><path d="M29 14l16-7 16 7 15 20-10 11-8-10v53H32V35l-8 10-10-11zM45 14v74" /></svg>
-                <span>Chaqueta</span>
-              </div>
-            </div>
-
-            <span className={styles.orbitLineOne} />
-            <span className={styles.orbitLineTwo} />
-            <span className={styles.platformGlow} />
-            <span className={styles.particleField} />
           </div>
           <p>
             La landing explica con claridad qué es demostrativo y qué estará conectado al sistema real,
