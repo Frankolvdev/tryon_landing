@@ -103,7 +103,10 @@ export function TryOnWidget() {
         </div>
 
         <div className={styles.reveal} aria-hidden="true">
-          <div className={styles.imageCanvas}>
+          <div
+            key={`after-${selected}-${burst}`}
+            className={`${styles.imageCanvas} ${styles.afterCanvas} ${isDragging ? styles.isDragging : ""}`}
+          >
             <Image
               src={`/images/landing/hero/${looks[selected].file}`}
               alt=""
@@ -114,23 +117,13 @@ export function TryOnWidget() {
           <div className={styles.revealTint} />
         </div>
 
-        <div
-          className={`${styles.transformBand} ${isPlaying || isDragging ? styles.transformBandActive : ""}`}
-          aria-hidden="true"
-        >
-          <div className={styles.transformImage}>
-            <Image
-              src={`/images/landing/hero/${looks[selected].file}`}
-              alt=""
-              fill
-              sizes="120px"
-            />
-          </div>
-          <span className={styles.pixelField} />
-          <span className={styles.refractionLine} />
+        <div key={`field-${burst}`} className={styles.transitionField} aria-hidden="true">
+          <span />
+          <span />
+          <span />
         </div>
 
-        <div key={burst} className={styles.changeBurst} aria-hidden="true">
+        <div key={`burst-${burst}`} className={styles.changeBurst} aria-hidden="true">
           <span />
           <span />
           <span />
@@ -170,7 +163,7 @@ export function TryOnWidget() {
             setBurst((value) => value + 1);
           }}
           onPointerCancel={() => setIsDragging(false)}
-          onBlur={() => setIsDragging(false)}
+          onKeyUp={() => setBurst((value) => value + 1)}
           onChange={(event) => {
             stopPreview();
             setSplit(Number(event.target.value));
