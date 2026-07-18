@@ -27,3 +27,131 @@
 .site-footer__navigation{padding-right:0}
 @media(max-width:1050px){.site-footer__identity p{padding-right:0}}
 @media(max-width:520px){.site-footer .container,.site-footer [class*="container"]{padding-left:20px;padding-right:20px}.site-footer__identity{width:100%;max-width:none}}
+
+/* 06H — Symmetric footer grid and restrained cinematic light sweeps */
+.site-footer > .container{
+  width:min(100%,1500px);
+  max-width:1500px;
+  margin-inline:auto;
+  padding-inline:clamp(24px,4.5vw,72px);
+}
+.site-footer__top{
+  width:100%;
+  grid-template-columns:minmax(280px,.92fr) minmax(560px,1.58fr);
+  column-gap:clamp(64px,8vw,128px);
+}
+.site-footer__identity{
+  width:100%;
+  max-width:440px;
+  margin:0;
+  padding:0;
+}
+.site-footer__identity p{
+  width:100%;
+  max-width:410px;
+  margin:0;
+  padding:0;
+}
+.site-footer__navigation{
+  width:100%;
+  padding:0;
+  justify-self:stretch;
+}
+.site-footer__bottom{width:100%}
+
+/* Light sweep is intentionally limited to premium interactive surfaces. */
+#features,
+#como-funciona,
+#gallery,
+#security,
+#confianza,
+#pricing,
+#faq{
+  position:relative;
+  isolation:isolate;
+}
+#features::after,
+#como-funciona::after,
+#gallery::after,
+#security::after,
+#confianza::after,
+#pricing::after,
+#faq::after{
+  content:"";
+  position:absolute;
+  z-index:8;
+  top:0;
+  bottom:0;
+  left:-34%;
+  width:18%;
+  pointer-events:none;
+  opacity:0;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.012) 18%,rgba(255,255,255,.075) 50%,rgba(255,35,73,.06) 66%,transparent);
+  filter:blur(1px);
+  transform:skewX(-18deg) translateX(-20%);
+  animation:landingSectionSweep 11s ease-in-out infinite;
+}
+#como-funciona::after{animation-delay:-2s}
+#gallery::after{animation-delay:-4.4s}
+#security::after{animation-delay:-6.8s}
+#confianza::after{animation-delay:-8.6s}
+#pricing::after{animation-delay:-3.1s}
+#faq::after{animation-delay:-7.2s}
+
+/* Smaller, more frequent reflection for cards/widgets without changing their layout. */
+.tryonWidget,
+#pricing article,
+#faq article,
+#security article,
+#gallery figure{
+  position:relative;
+  overflow:hidden;
+}
+.tryonWidget::after,
+#pricing article::after,
+#faq article::after,
+#security article::after,
+#gallery figure::after{
+  content:"";
+  position:absolute;
+  z-index:12;
+  inset:-25% auto -25% -55%;
+  width:30%;
+  pointer-events:none;
+  opacity:0;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.08),rgba(255,32,69,.045),transparent);
+  transform:skewX(-20deg);
+  animation:landingWidgetSweep 8.5s ease-in-out infinite;
+}
+#pricing article:nth-of-type(2)::after,
+#faq article:nth-of-type(2n)::after,
+#security article:nth-of-type(2)::after,
+#gallery figure:nth-of-type(2n)::after{animation-delay:-3.8s}
+
+@keyframes landingSectionSweep{
+  0%,24%{left:-34%;opacity:0}
+  31%{opacity:.7}
+  51%{opacity:.42}
+  67%,100%{left:116%;opacity:0}
+}
+@keyframes landingWidgetSweep{
+  0%,35%{left:-55%;opacity:0}
+  42%{opacity:.72}
+  62%{opacity:.3}
+  74%,100%{left:130%;opacity:0}
+}
+
+@media(max-width:1050px){
+  .site-footer > .container{padding-inline:clamp(24px,5vw,54px)}
+  .site-footer__top{grid-template-columns:1fr;row-gap:48px}
+  .site-footer__identity{max-width:620px}
+  .site-footer__identity p{max-width:560px}
+}
+@media(max-width:520px){
+  .site-footer > .container{padding-inline:20px}
+  .site-footer__top{row-gap:40px}
+}
+@media(prefers-reduced-motion:reduce){
+  #features::after,#como-funciona::after,#gallery::after,#security::after,#confianza::after,#pricing::after,#faq::after,
+  .tryonWidget::after,#pricing article::after,#faq article::after,#security article::after,#gallery figure::after{animation:none;display:none}
+}
