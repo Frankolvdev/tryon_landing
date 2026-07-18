@@ -1,4 +1,5 @@
 import { FaqSection } from "../components/landing/faq-section";
+import { FinalCtaSection } from "../components/landing/final-cta-section";
 import { HeroSection } from "../components/landing/hero-section";
 import { HowItWorksSection } from "../components/landing/how-it-works-section";
 import { LiveGallerySection } from "../components/landing/live-gallery-section";
@@ -32,16 +33,7 @@ export default function Home() {
       <SocialProofSection />
       <PricingSection />
       <FaqSection />
-
-      <section className="ctaBand">
-        <div>
-          <h2>¿Listo para ver la magia?</h2>
-          <p>Selecciona un plan y prepara tu cuenta para comenzar.</p>
-        </div>
-        <a className="primaryButton" href="#register">
-          Crear mi cuenta <span>→</span>
-        </a>
-      </section>
+      <FinalCtaSection />
     </main>
   );
 }
