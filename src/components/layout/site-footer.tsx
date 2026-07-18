@@ -2,6 +2,7 @@ import Link from "next/link";
 import type { Route } from "next";
 import { Brand } from "@/components/layout/brand";
 import { Container } from "@/components/layout/container";
+import { CookiePreferencesLink } from "@/components/privacy/cookie-preferences-link";
 
 const footerGroups = [
   {
@@ -46,6 +47,7 @@ export function SiteFooter() {
               <div key={group.title}>
                 <h2>{group.title}</h2>
                 {group.links.map((link) => <Link key={link.href} href={link.href as Route}>{link.label}</Link>)}
+                {group.title === "Legal" && <CookiePreferencesLink />}
               </div>
             ))}
           </div>
