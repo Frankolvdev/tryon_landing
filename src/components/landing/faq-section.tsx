@@ -54,6 +54,7 @@ export function FaqSection() {
   return (
     <section className={styles.section} id="faq" aria-labelledby="faq-title">
       <div className={styles.glow} aria-hidden="true" />
+      <span className={styles.lightSweep} aria-hidden="true" />
       <div className={styles.inner}>
         <div className={styles.headingBlock}>
           <span className={styles.kicker}>PREGUNTAS FRECUENTES</span>

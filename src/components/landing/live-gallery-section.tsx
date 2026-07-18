@@ -66,6 +66,7 @@ export function LiveGallerySection() {
   return (
     <section className={styles.section} id="gallery" aria-labelledby="gallery-title">
       <div className={styles.glow} aria-hidden="true" />
+      <span className={styles.lightSweep} aria-hidden="true" />
 
       <div className={styles.header}>
         <div>

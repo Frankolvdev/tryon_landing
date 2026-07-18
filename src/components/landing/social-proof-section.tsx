@@ -61,6 +61,7 @@ export function SocialProofSection() {
   return (
     <section className={styles.section} id="confianza" aria-labelledby="social-proof-title">
       <div className={styles.glow} aria-hidden="true" />
+      <span className={styles.lightSweep} aria-hidden="true" />
 
       <div className={styles.header}>
         <div>

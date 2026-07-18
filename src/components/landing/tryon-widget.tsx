@@ -21,6 +21,7 @@ export function TryOnWidget() {
   const [selected, setSelected] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
   const [burst, setBurst] = useState(0);
+  const [isDragging, setIsDragging] = useState(false);
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const stepRef = useRef(0);
 
@@ -102,7 +103,10 @@ export function TryOnWidget() {
         </div>
 
         <div className={styles.reveal} aria-hidden="true">
-          <div className={styles.imageCanvas}>
+          <div
+            key={`after-${selected}-${burst}`}
+            className={`${styles.imageCanvas} ${styles.afterCanvas} ${isDragging ? styles.isDragging : ""}`}
+          >
             <Image
               src={`/images/landing/hero/${looks[selected].file}`}
               alt=""
@@ -113,7 +117,13 @@ export function TryOnWidget() {
           <div className={styles.revealTint} />
         </div>
 
-        <div key={burst} className={styles.changeBurst} aria-hidden="true">
+        <div key={`field-${burst}`} className={styles.transitionField} aria-hidden="true">
+          <span />
+          <span />
+          <span />
+        </div>
+
+        <div key={`burst-${burst}`} className={styles.changeBurst} aria-hidden="true">
           <span />
           <span />
           <span />
@@ -144,10 +154,19 @@ export function TryOnWidget() {
           min="5"
           max="95"
           value={split}
+          onPointerDown={() => {
+            stopPreview();
+            setIsDragging(true);
+          }}
+          onPointerUp={() => {
+            setIsDragging(false);
+            setBurst((value) => value + 1);
+          }}
+          onPointerCancel={() => setIsDragging(false)}
+          onKeyUp={() => setBurst((value) => value + 1)}
           onChange={(event) => {
             stopPreview();
             setSplit(Number(event.target.value));
-            setBurst((value) => value + 1);
           }}
         />
       </div>

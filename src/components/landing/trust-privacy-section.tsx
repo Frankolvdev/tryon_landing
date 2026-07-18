@@ -54,6 +54,7 @@ export function TrustPrivacySection() {
   return (
     <section className={styles.section} id="security" aria-labelledby="trust-title">
       <div className={styles.ambient} aria-hidden="true" />
+      <span className={styles.lightSweep} aria-hidden="true" />
 
       <div className={styles.heading}>
         <p>CONFIANZA DESDE EL PRIMER CLIC</p>

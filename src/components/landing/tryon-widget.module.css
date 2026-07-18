@@ -7,3 +7,15 @@
 @keyframes scan{0%{top:-8%}100%{top:108%}}@keyframes gridShift{to{background-position:0 28px,28px 0}}@keyframes arcPulse{50%{transform:translate(-50%,-50%) rotate(8deg) scale(1.12);filter:drop-shadow(0 0 18px rgba(0,204,255,.9))}}@keyframes corePulse{50%{transform:translate(-50%,-50%) scale(1.08);box-shadow:0 0 0 9px rgba(0,207,255,.06),0 0 34px rgba(0,207,255,.78),0 0 42px rgba(255,23,61,.5)}}@keyframes burst{0%{opacity:.9;transform:scale(.3)}100%{opacity:0;transform:scale(12)}}@keyframes buttonSweep{0%,45%{transform:translateX(-140%)}75%,100%{transform:translateX(140%)}}@keyframes buttonPulse{0%{opacity:.75;transform:scale(.2)}100%{opacity:0;transform:scale(10)}}
 @media(max-width:600px){.card{padding:13px}.stage{height:300px}.card header strong{font-size:16px}.rail{gap:5px}.actions{grid-template-columns:1fr}.actions button,.actions a{height:46px}.hud span{font-size:6px}.energyArc{width:145px;height:64px}}
 @media(prefers-reduced-motion:reduce){.reveal,.divider,.energyArc{transition:none}.scanline,.grid,.energyArc,.divider i,.changeBurst span,.previewButton:before,.buttonPulse{animation:none!important}}
+
+
+/* 06K — image-level transformation animation */
+.afterCanvas{transform-origin:center 48%;animation:imageMaterialize .92s cubic-bezier(.16,1,.3,1) both;will-change:transform,filter,opacity}
+.afterCanvas.isDragging{filter:saturate(1.12) contrast(1.08) brightness(1.04);transform:scale(1.012)}
+.transitionField{position:absolute;z-index:6;inset:0;overflow:hidden;pointer-events:none;mix-blend-mode:screen}
+.transitionField span{position:absolute;inset:-18% auto -18% -32%;width:30%;transform:skewX(-16deg);background:linear-gradient(90deg,transparent,rgba(40,222,255,.08),rgba(218,248,255,.92),rgba(255,40,82,.18),transparent);filter:blur(4px);animation:imageSweep 1.05s cubic-bezier(.16,1,.3,1) both}
+.transitionField span:nth-child(2){width:12%;animation-delay:.08s;opacity:.72;filter:blur(12px)}
+.transitionField span:nth-child(3){width:4%;animation-delay:.14s;opacity:.9;filter:blur(1px)}
+@keyframes imageMaterialize{0%{opacity:.28;filter:blur(9px) saturate(.55) brightness(1.35);transform:scale(1.035) translateX(8px)}42%{opacity:.92;filter:blur(2px) saturate(1.3) brightness(1.12);transform:scale(1.012) translateX(0)}100%{opacity:1;filter:none;transform:none}}
+@keyframes imageSweep{0%{transform:translateX(0) skewX(-16deg);opacity:0}12%{opacity:1}72%{opacity:.9}100%{transform:translateX(560%) skewX(-16deg);opacity:0}}
+@media(prefers-reduced-motion:reduce){.afterCanvas,.transitionField span{animation:none}.afterCanvas.isDragging{transform:none}}
