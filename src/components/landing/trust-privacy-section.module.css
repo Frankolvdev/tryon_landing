@@ -24,8 +24,8 @@
   display: grid;
   grid-template-columns: minmax(0, 1.25fr) minmax(18rem, .75fr);
   gap: 2rem 4rem;
-  align-items: end;
-  margin-bottom: clamp(2.5rem, 6vw, 4.5rem);
+  align-items: start;
+  margin-bottom: clamp(2.25rem, 5vw, 3.75rem);
 }
 
 .heading > p {
@@ -55,7 +55,9 @@
 .heading > span {
   color: #9d9aa5;
   font-size: clamp(.98rem, 1.4vw, 1.12rem);
-  line-height: 1.75;
+  line-height: 1.7;
+  align-self: start;
+  padding-top: clamp(.2rem, .7vw, .7rem);
 }
 
 .layout {
@@ -293,9 +295,3 @@
   .tabActive,
   .arrow { transition: none; }
 }
-
-
-/* 06K — scoped cinematic light sweep; no global selectors */
-.lightSweep{position:absolute;z-index:8;top:-22%;bottom:-22%;left:-34%;width:18%;pointer-events:none;opacity:0;transform:skewX(-17deg);background:linear-gradient(90deg,transparent,rgba(84,211,255,.035),rgba(226,249,255,.28),rgba(255,42,82,.07),transparent);filter:blur(5px);mix-blend-mode:screen;animation:sectionLightSweep 13.0s ease-in-out 6.5s infinite}
-@keyframes sectionLightSweep{0%,58%{left:-34%;opacity:0}62%{opacity:.28}76%{opacity:.16}82%,100%{left:118%;opacity:0}}
-@media(prefers-reduced-motion:reduce){.lightSweep{display:none}}
