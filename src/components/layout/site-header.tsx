@@ -3,18 +3,25 @@
 import { useEffect, useState } from "react";
 import { Brand } from "@/components/layout/brand";
 import { Container } from "@/components/layout/container";
-import { BackendStatus } from "@/components/system/backend-status";
-import { ButtonLink } from "@/components/ui/button-link";
 
 const navigation = [
-  { href: "/#experiencia", label: "Experiencia" },
+  { href: "/#features", label: "Tecnología" },
   { href: "/#como-funciona", label: "Cómo funciona" },
-  { href: "/#plans", label: "Planes", pending: true },
-  { href: "/#faq", label: "FAQ", pending: true },
+  { href: "/#gallery", label: "Galería" },
+  { href: "/#pricing", label: "Planes" },
+  { href: "/#faq", label: "FAQ" },
 ];
 
 export function SiteHeader() {
   const [isOpen, setIsOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setIsScrolled(window.scrollY > 24);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   useEffect(() => {
     document.body.classList.toggle("menu-open", isOpen);
@@ -24,26 +31,19 @@ export function SiteHeader() {
   const closeMenu = () => setIsOpen(false);
 
   return (
-    <header className="site-header">
+    <header className={`site-header ${isScrolled ? "site-header--scrolled" : ""}`}>
       <Container className="site-header__inner" size="wide">
         <Brand />
 
         <nav className="desktop-navigation" aria-label="Navegación principal">
           {navigation.map((item) => (
-            <a
-              key={item.label}
-              href={item.pending ? undefined : item.href}
-              aria-disabled={item.pending || undefined}
-              title={item.pending ? "Esta sección se incorporará en un próximo módulo" : undefined}
-            >
-              {item.label}
-            </a>
+            <a key={item.href} href={item.href}>{item.label}</a>
           ))}
         </nav>
 
         <div className="site-header__actions">
-          <BackendStatus />
-          <ButtonLink href="/#experiencia" size="small">Comenzar</ButtonLink>
+          <a className="site-header__login" href="/#login">Iniciar sesión</a>
+          <a className="site-header__cta" href="/#pricing">Comenzar <span aria-hidden="true">→</span></a>
           <button
             className="menu-toggle"
             type="button"
@@ -62,19 +62,17 @@ export function SiteHeader() {
         <Container>
           <nav id="mobile-navigation" aria-label="Navegación móvil">
             {navigation.map((item, index) => (
-              <a
-                key={item.label}
-                href={item.pending ? undefined : item.href}
-                aria-disabled={item.pending || undefined}
-                onClick={item.pending ? undefined : closeMenu}
-              >
+              <a key={item.href} href={item.href} onClick={closeMenu}>
                 <span>0{index + 1}</span>
                 {item.label}
-                {item.pending ? <small>Próximamente</small> : <b aria-hidden="true">↗</b>}
+                <b aria-hidden="true">↗</b>
               </a>
             ))}
           </nav>
-          <ButtonLink href="/#experiencia" size="large" onClick={closeMenu}>Crear mi experiencia</ButtonLink>
+          <div className="mobile-menu__actions">
+            <a href="/#login" onClick={closeMenu}>Iniciar sesión</a>
+            <a href="/#pricing" onClick={closeMenu}>Crear mi experiencia</a>
+          </div>
         </Container>
       </div>
     </header>
