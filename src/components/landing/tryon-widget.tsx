@@ -13,38 +13,66 @@ const looks = [
   { file: "look-5.jpg", label: "Look casual" },
 ];
 
+const AUTO_STEPS = [8, 92, 22, 78, 50];
+
 export function TryOnWidget() {
   const sliderId = useId();
   const [split, setSplit] = useState(50);
   const [selected, setSelected] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
-  const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
+  const [burst, setBurst] = useState(0);
+  const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const stepRef = useRef(0);
 
-  useEffect(() => {
-    return () => {
-      if (timerRef.current) clearInterval(timerRef.current);
-    };
-  }, []);
+  function stopPreview() {
+    if (timerRef.current) clearTimeout(timerRef.current);
+    timerRef.current = null;
+    stepRef.current = 0;
+    setIsPlaying(false);
+  }
+
+  function scheduleStep() {
+    const next = AUTO_STEPS[stepRef.current % AUTO_STEPS.length];
+    stepRef.current += 1;
+    setSplit(next);
+    setBurst((value) => value + 1);
+
+    timerRef.current = setTimeout(() => {
+      if (stepRef.current >= AUTO_STEPS.length) {
+        timerRef.current = null;
+        stepRef.current = 0;
+        setIsPlaying(false);
+        return;
+      }
+      scheduleStep();
+    }, 1180);
+  }
 
   function togglePreview() {
-    if (timerRef.current) {
-      clearInterval(timerRef.current);
-      timerRef.current = null;
-      setIsPlaying(false);
+    if (isPlaying) {
+      stopPreview();
       return;
     }
 
     setIsPlaying(true);
-    setSplit(14);
-    let showAfter = false;
-    timerRef.current = setInterval(() => {
-      showAfter = !showAfter;
-      setSplit(showAfter ? 86 : 14);
-    }, 1250);
+    stepRef.current = 0;
+    scheduleStep();
+  }
+
+  useEffect(() => stopPreview, []);
+
+  function selectLook(index: number) {
+    stopPreview();
+    setSelected(index);
+    setSplit(50);
+    setBurst((value) => value + 1);
   }
 
   return (
-    <section className={styles.card} aria-label="Demostración interactiva del antes y después">
+    <section
+      className={`${styles.card} ${isPlaying ? styles.isPlaying : ""}`}
+      aria-label="Demostración interactiva del antes y después"
+    >
       <header>
         <strong>
           Vista comparativa <em>AI</em>
@@ -58,6 +86,11 @@ export function TryOnWidget() {
         className={styles.stage}
         style={{ "--split": `${split}%` } as React.CSSProperties}
       >
+        <div className={styles.ambient} aria-hidden="true" />
+        <div className={styles.grid} aria-hidden="true" />
+        <div className={styles.scanline} aria-hidden="true" />
+        <div className={styles.energyArc} aria-hidden="true" />
+
         <div className={styles.imageCanvas}>
           <Image
             src="/images/landing/hero/before.jpg"
@@ -77,13 +110,30 @@ export function TryOnWidget() {
               sizes="(max-width: 600px) 92vw, 460px"
             />
           </div>
+          <div className={styles.revealTint} />
+        </div>
+
+        <div key={burst} className={styles.changeBurst} aria-hidden="true">
+          <span />
+          <span />
+          <span />
         </div>
 
         <b className={styles.before}>Antes</b>
         <b className={styles.after}>Después</b>
         <span className={styles.divider} aria-hidden="true">
-          <i>↔</i>
+          <span className={styles.dividerGlow} />
+          <i>
+            <span>‹</span>
+            <span>›</span>
+          </i>
         </span>
+
+        <div className={styles.hud} aria-hidden="true">
+          <span>BODY MAP</span>
+          <span>FABRIC MATCH</span>
+          <span>REALTIME</span>
+        </div>
 
         <label className={styles.sr} htmlFor={sliderId}>
           Deslizar para comparar el antes y el después
@@ -95,12 +145,9 @@ export function TryOnWidget() {
           max="95"
           value={split}
           onChange={(event) => {
-            if (timerRef.current) {
-              clearInterval(timerRef.current);
-              timerRef.current = null;
-              setIsPlaying(false);
-            }
+            stopPreview();
             setSplit(Number(event.target.value));
+            setBurst((value) => value + 1);
           }}
         />
       </div>
@@ -110,7 +157,7 @@ export function TryOnWidget() {
           <button
             key={look.file}
             type="button"
-            onClick={() => setSelected(index)}
+            onClick={() => selectLook(index)}
             className={selected === index ? styles.active : ""}
             aria-label={`Mostrar ${look.label}`}
             aria-pressed={selected === index}
@@ -121,13 +168,15 @@ export function TryOnWidget() {
               fill
               sizes="68px"
             />
+            <span>{String(index + 1).padStart(2, "0")}</span>
           </button>
         ))}
       </div>
 
       <div className={styles.actions}>
         <button type="button" className={styles.previewButton} onClick={togglePreview}>
-          {isPlaying ? "Pausar comparación" : "Ver transformación"}
+          <span className={styles.buttonPulse} aria-hidden="true" />
+          {isPlaying ? "Pausar transformación" : "Ver el cambio"}
           <b>{isPlaying ? "Ⅱ" : "▶"}</b>
         </button>
         <a className={styles.learnButton} href="#como-funciona">
