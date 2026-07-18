@@ -487,3 +487,217 @@
   .securityCore::after,
   .shield { animation: none; }
 }
+
+/* 06X: escena holográfica de moda animada, aislada a esta sección */
+.holoStage {
+  position: absolute;
+  left: 50%;
+  bottom: 7%;
+  width: min(74%, 22rem);
+  height: 4.8rem;
+  transform: translateX(-50%);
+  border-radius: 50%;
+  background: radial-gradient(ellipse at center, rgba(255, 53, 85, .24), rgba(54, 130, 255, .08) 48%, transparent 72%);
+  filter: drop-shadow(0 0 22px rgba(255, 53, 85, .22));
+}
+
+.stageRing,
+.stageRingInner {
+  position: absolute;
+  inset: 25% 4%;
+  border: 1px solid rgba(255, 73, 100, .58);
+  border-radius: 50%;
+  box-shadow: 0 0 18px rgba(255, 73, 100, .28), inset 0 0 18px rgba(83, 151, 255, .12);
+  animation: stagePulse 3.2s ease-in-out infinite;
+}
+
+.stageRingInner {
+  inset: 37% 18%;
+  border-color: rgba(73, 148, 255, .55);
+  animation-delay: -1.1s;
+}
+
+.stageBeam {
+  position: absolute;
+  left: 28%;
+  right: 28%;
+  bottom: 46%;
+  height: 16rem;
+  background: linear-gradient(to top, rgba(255, 61, 91, .18), rgba(61, 137, 255, .08) 62%, transparent);
+  clip-path: polygon(35% 100%, 65% 100%, 100% 0, 0 0);
+  filter: blur(7px);
+  opacity: .75;
+  animation: beamBreathe 3.8s ease-in-out infinite;
+}
+
+.holoWoman {
+  position: absolute;
+  left: 50%;
+  bottom: 9%;
+  width: clamp(8.7rem, 31%, 12.8rem);
+  transform: translateX(-50%);
+  filter: drop-shadow(0 0 12px rgba(255, 67, 95, .5)) drop-shadow(0 0 24px rgba(66, 137, 255, .24));
+  animation: womanFloat 4.2s ease-in-out infinite;
+  z-index: 3;
+}
+
+.holoWoman svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  opacity: .94;
+}
+
+.bodyScan {
+  position: absolute;
+  left: 18%;
+  right: 18%;
+  top: 12%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #58a2ff, #ff4764, transparent);
+  box-shadow: 0 0 12px #ff4764;
+  animation: bodyScanMove 3.7s ease-in-out infinite;
+}
+
+.bodyGlow {
+  position: absolute;
+  inset: 16% 25% 10%;
+  border-radius: 45%;
+  background: radial-gradient(circle, rgba(255, 58, 91, .14), transparent 66%);
+  filter: blur(15px);
+  animation: glowBreathe 2.8s ease-in-out infinite;
+}
+
+.outfitCard {
+  --orbit-x: 0px;
+  --orbit-y: 0px;
+  position: absolute;
+  width: clamp(4.2rem, 16%, 5.9rem);
+  aspect-ratio: .82;
+  display: grid;
+  place-items: center;
+  padding: .45rem;
+  border: 1px solid rgba(255, 255, 255, .12);
+  border-radius: .85rem;
+  background: linear-gradient(145deg, rgba(255, 255, 255, .065), rgba(6, 8, 14, .72));
+  backdrop-filter: blur(10px);
+  box-shadow: 0 14px 34px rgba(0, 0, 0, .32), inset 0 0 20px rgba(255, 71, 100, .06);
+  animation: outfitOrbit 6.4s ease-in-out infinite;
+  z-index: 4;
+}
+
+.outfitCard::after {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  background: linear-gradient(135deg, rgba(78,157,255,.55), transparent 36%, transparent 62%, rgba(255,73,100,.5));
+  opacity: .55;
+  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  mask-composite: exclude;
+  padding: 1px;
+}
+
+.outfitCard svg {
+  width: 72%;
+  fill: none;
+  stroke: #ff536e;
+  stroke-width: 2.4;
+  filter: drop-shadow(0 0 8px rgba(255, 71, 100, .58));
+}
+
+.outfitCard span {
+  color: #d8d6de;
+  font-size: .55rem;
+  font-weight: 800;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+.outfitDress { left: 7%; top: 13%; --orbit-x: 12px; --orbit-y: -8px; }
+.outfitTop { right: 6%; top: 17%; --orbit-x: -10px; --orbit-y: 7px; animation-delay: -1.4s; }
+.outfitShorts { left: 8%; bottom: 13%; --orbit-x: 8px; --orbit-y: 9px; animation-delay: -2.7s; }
+.outfitJacket { right: 7%; bottom: 12%; --orbit-x: -12px; --orbit-y: -6px; animation-delay: -4.1s; }
+
+.dataTag {
+  position: absolute;
+  z-index: 5;
+  padding: .38rem .56rem;
+  border: 1px solid rgba(255,255,255,.1);
+  border-radius: 999px;
+  color: #c9c7cf;
+  background: rgba(5,7,12,.68);
+  backdrop-filter: blur(8px);
+  font-size: .5rem;
+  font-weight: 800;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  box-shadow: 0 8px 22px rgba(0,0,0,.25);
+}
+
+.dataTag::before {
+  content: "";
+  display: inline-block;
+  width: .36rem;
+  height: .36rem;
+  margin-right: .35rem;
+  border-radius: 50%;
+  background: #58a2ff;
+  box-shadow: 0 0 9px #58a2ff;
+}
+
+.tagPrivacy { left: 25%; top: 7%; }
+.tagReal { right: 23%; top: 8%; }
+.tagClear { left: 50%; bottom: 2%; transform: translateX(-50%); }
+.tagReal::before,
+.tagClear::before { background: #ff4764; box-shadow: 0 0 9px #ff4764; }
+
+@keyframes womanFloat {
+  0%, 100% { transform: translateX(-50%) translateY(0) rotate(-.35deg); }
+  50% { transform: translateX(-50%) translateY(-.6rem) rotate(.45deg); }
+}
+
+@keyframes outfitOrbit {
+  0%, 100% { transform: translate(0, 0) rotate(-1.5deg); }
+  50% { transform: translate(var(--orbit-x), var(--orbit-y)) rotate(1.8deg); }
+}
+
+@keyframes bodyScanMove {
+  0%, 100% { transform: translateY(0); opacity: .15; }
+  15% { opacity: .95; }
+  70% { transform: translateY(17rem); opacity: .72; }
+  85% { opacity: 0; }
+}
+
+@keyframes stagePulse {
+  0%, 100% { transform: scale(1); opacity: .55; }
+  50% { transform: scale(1.04); opacity: 1; }
+}
+
+@keyframes beamBreathe {
+  0%, 100% { opacity: .32; transform: scaleX(.94); }
+  50% { opacity: .78; transform: scaleX(1.05); }
+}
+
+@keyframes glowBreathe {
+  0%, 100% { opacity: .45; transform: scale(.96); }
+  50% { opacity: .9; transform: scale(1.06); }
+}
+
+@media (max-width: 620px) {
+  .holoWoman { width: 8.4rem; }
+  .outfitCard { width: 3.8rem; padding: .3rem; }
+  .outfitCard span { font-size: .43rem; }
+  .dataTag { display: none; }
+  .holoStage { width: 78%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .holoWoman,
+  .outfitCard,
+  .bodyScan,
+  .stageRing,
+  .stageRingInner,
+  .stageBeam,
+  .bodyGlow { animation: none; }
+}
