@@ -62,17 +62,9 @@ export function TrustPrivacySection() {
           Tecnología avanzada. <em>Experiencia responsable.</em>
         </h2>
         <div className={styles.trustIntro}>
-          <div className={styles.trustVisual} aria-hidden="true">
-            <div className={styles.holoBackdrop} />
+          <div className={styles.trustVisual}>
             <HolographicFashionScene />
-            <div className={styles.sceneBadge}>
-              <span /> Profundidad 3D real
-            </div>
           </div>
-          <p>
-            La landing explica con claridad qué es demostrativo y qué estará conectado al sistema real,
-            sin métricas, testimonios ni promesas técnicas inventadas.
-          </p>
         </div>
       </div>
 

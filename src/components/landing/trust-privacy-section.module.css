@@ -1021,3 +1021,64 @@
   .trustVisual { min-height: 22rem; }
   .sceneBadge { left: .75rem; bottom: .75rem; font-size: .58rem; }
 }
+
+
+/* 07C: escena 2.5D corregida, transparente y sin espacio inferior */
+.trustIntro { display: block; }
+.trustVisual { min-height: 0; height: clamp(24rem, 36vw, 31rem); }
+.trustVisual :global(.holographic-fashion-canvas) { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 2; }
+.trustVisual :global(.holographic-fashion-canvas canvas) { display: block; width: 100% !important; height: 100% !important; }
+@media (max-width: 900px) { .trustVisual { height: 26rem; } }
+@media (max-width: 620px) { .trustVisual { height: 22rem; } }
+
+/* 07D: holograma azul limpio; el color y las partículas proceden de Three.js */
+.trustVisual {
+  background:
+    radial-gradient(circle at 50% 48%, rgba(52, 166, 255, .11), transparent 35%),
+    linear-gradient(145deg, rgba(255,255,255,.026), rgba(255,255,255,.006)),
+    #05080d;
+}
+.holoBackdrop {
+  opacity: .34;
+  background-image:
+    linear-gradient(rgba(92, 190, 255, .035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(92, 190, 255, .03) 1px, transparent 1px);
+}
+.sceneBadge {
+  border-color: rgba(93, 202, 255, .18);
+  color: rgba(221, 244, 255, .76);
+}
+
+/* 07E: recortes transparentes; todo el ambiente visual lo genera Three.js */
+.trustVisual {
+  background: #05070b;
+}
+
+.holoBackdrop {
+  display: none;
+}
+
+/* 07K: flujo editorial diagonal sin contenedor 3D */
+.trustVisual {
+  min-height: 0;
+  height: clamp(24rem, 34vw, 31rem);
+  overflow: visible;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.trustVisual::before,
+.holoBackdrop,
+.sceneBadge {
+  display: none;
+}
+
+@media (max-width: 900px) {
+  .trustVisual { height: 26rem; }
+}
+
+@media (max-width: 620px) {
+  .trustVisual { height: 22rem; }
+}
