@@ -113,3 +113,98 @@
     letter-spacing: .12em;
   }
 }
+
+/* 06Q: identidad visual fría y layer de cristal para diferenciar Planes */
+.section {
+  isolation: isolate;
+  padding-top: clamp(10rem, 14vw, 13rem);
+  background:
+    radial-gradient(circle at 12% 22%, rgba(48, 116, 189, .19), transparent 34rem),
+    radial-gradient(circle at 86% 14%, rgba(99, 168, 235, .12), transparent 30rem),
+    linear-gradient(180deg, #07101a 0%, #09131f 22%, #0b1119 58%, #07090d 100%);
+  box-shadow: inset 0 1px rgba(155, 205, 255, .13), inset 0 90px 140px rgba(0, 0, 0, .18);
+}
+
+.section::before {
+  top: 4.8rem;
+  border-color: rgba(132, 190, 246, .34);
+  color: #d8ecff;
+  background: linear-gradient(180deg, rgba(24, 42, 61, .92), rgba(11, 21, 32, .88));
+  box-shadow: 0 18px 55px rgba(0,0,0,.42), 0 0 34px rgba(73, 146, 218, .12), inset 0 1px rgba(255,255,255,.08);
+}
+
+.section::after {
+  top: 0;
+  left: 50%;
+  width: min(1320px, calc(100% - 2rem));
+  height: clamp(7rem, 11vw, 10rem);
+  transform: translateX(-50%);
+  border: 1px solid rgba(138, 190, 238, .16);
+  border-top: 0;
+  border-radius: 0 0 42px 42px;
+  background:
+    linear-gradient(110deg, rgba(255,255,255,.07), transparent 28%, transparent 72%, rgba(110, 177, 239, .08)),
+    linear-gradient(180deg, rgba(21, 38, 55, .72), rgba(12, 23, 35, .34));
+  box-shadow: 0 30px 80px rgba(0,0,0,.34), inset 0 -1px rgba(167, 214, 255, .08);
+  backdrop-filter: blur(18px);
+  filter: none;
+  pointer-events: none;
+}
+
+.inner {
+  z-index: 3;
+}
+
+.heading > span,
+.planKey {
+  color: #7ec2ff;
+}
+
+.heading p,
+.cardHeader p,
+.priceRow span,
+.allowances span,
+.note,
+.availability {
+  color: #94a7ba;
+}
+
+.card {
+  border-color: rgba(137, 187, 232, .17);
+  background:
+    linear-gradient(145deg, rgba(105, 164, 218, .11), rgba(31, 48, 67, .12) 48%, rgba(255,255,255,.018));
+  box-shadow: 0 28px 90px rgba(0,0,0,.34), inset 0 1px rgba(255,255,255,.045);
+  backdrop-filter: blur(16px);
+}
+
+.card:hover {
+  border-color: rgba(112, 183, 246, .58);
+  box-shadow: 0 34px 100px rgba(0,0,0,.42), 0 0 42px rgba(54, 134, 210, .10);
+}
+
+.allowances div,
+.state {
+  border: 1px solid rgba(132, 185, 231, .10);
+  background: rgba(93, 146, 194, .055);
+}
+
+.highlighted {
+  border-color: rgba(232, 58, 84, .75);
+  box-shadow: 0 34px 100px rgba(0,0,0,.42), 0 0 45px rgba(193, 25, 53, .16);
+}
+
+@media (max-width: 650px) {
+  .section {
+    padding-top: 9rem;
+  }
+
+  .section::before {
+    top: 3.65rem;
+  }
+
+  .section::after {
+    width: calc(100% - 1rem);
+    height: 6.8rem;
+    border-radius: 0 0 28px 28px;
+  }
+}
