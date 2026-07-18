@@ -303,3 +303,31 @@
   .ambient, .outerOrbit, .middleOrbit, .tokenA, .tokenB, .tokenC, .coreHalo, .scan { animation: none; }
   .promise, .primary { transition: none; }
 }
+
+/* 06P: cierre visual explícito para separar Tokens de Planes */
+.section::after {
+  content: "";
+  position: absolute;
+  z-index: 8;
+  left: 50%;
+  bottom: 0;
+  width: min(1180px, calc(100% - 2.5rem));
+  height: 1px;
+  transform: translateX(-50%);
+  background: linear-gradient(90deg, transparent, rgba(255, 77, 105, .62) 22%, rgba(255,255,255,.24) 50%, rgba(255, 77, 105, .62) 78%, transparent);
+  box-shadow: 0 0 24px rgba(238, 48, 79, .28);
+  pointer-events: none;
+}
+
+.section {
+  padding-bottom: clamp(7.5rem, 12vw, 11rem);
+  background:
+    radial-gradient(circle at var(--pointer-x) var(--pointer-y), rgba(220, 35, 69, .12), transparent 28rem),
+    linear-gradient(180deg, #070708 0%, #0a0709 54%, #09070a 82%, #050607 100%);
+}
+
+@media (max-width: 650px) {
+  .section::after {
+    width: calc(100% - 2rem);
+  }
+}

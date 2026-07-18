@@ -33,3 +33,83 @@
 .note { margin: 1.5rem auto 0; max-width: 760px; text-align: center; font-size: .82rem; line-height: 1.6; }
 @media (max-width: 650px) { .section { padding: 5.5rem 1rem; } .heading { text-align: left; } .heading h2 { font-size: 2.65rem; } .allowances { grid-template-columns: 1fr; } .cardHeader { min-height: auto; margin-bottom: 1rem; } }
 @media (prefers-reduced-motion: reduce) { .card, .cta { transition: none; } }
+
+/* 06P: Planes se presenta como un bloque comercial independiente */
+.section {
+  padding-top: clamp(8rem, 12vw, 11rem);
+  border-top: 0;
+  background:
+    radial-gradient(circle at 18% 8%, rgba(60, 92, 130, .13), transparent 32rem),
+    radial-gradient(circle at 82% 5%, rgba(255,255,255,.055), transparent 27rem),
+    linear-gradient(180deg, #050607 0%, #080b0f 20%, #08090c 64%, #070708 100%);
+}
+
+.section::before {
+  content: "PLANES PARA USO CONTINUO";
+  position: absolute;
+  z-index: 2;
+  top: 2.1rem;
+  left: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.25rem;
+  padding: 0 1rem;
+  transform: translateX(-50%);
+  border: 1px solid rgba(142, 172, 207, .24);
+  border-radius: 999px;
+  color: #b7c8da;
+  background: rgba(11, 15, 20, .88);
+  box-shadow: 0 16px 45px rgba(0,0,0,.34), inset 0 1px rgba(255,255,255,.06);
+  font-size: .66rem;
+  font-weight: 850;
+  letter-spacing: .16em;
+  white-space: nowrap;
+}
+
+.section::after {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  top: 3.2rem;
+  left: 50%;
+  width: min(880px, calc(100% - 3rem));
+  height: 10rem;
+  transform: translateX(-50%);
+  background: radial-gradient(ellipse at center, rgba(93, 128, 166, .12), transparent 70%);
+  filter: blur(18px);
+  pointer-events: none;
+}
+
+.heading > span {
+  color: #9cb7d1;
+}
+
+.heading h2 {
+  color: #f7f9fc;
+}
+
+.card {
+  border-color: rgba(157, 184, 211, .12);
+  background: linear-gradient(145deg, rgba(131, 159, 188, .075), rgba(255,255,255,.018));
+}
+
+.card:hover {
+  border-color: rgba(143, 176, 207, .48);
+}
+
+.highlighted {
+  border-color: rgba(228, 53, 80, .7);
+}
+
+@media (max-width: 650px) {
+  .section {
+    padding-top: 7.5rem;
+  }
+
+  .section::before {
+    top: 1.9rem;
+    font-size: .58rem;
+    letter-spacing: .12em;
+  }
+}
