@@ -4,6 +4,8 @@ import { LegalPage } from "@/components/legal/legal-page";
 export const metadata: Metadata = {
   title: "Política de privacidad",
   description: "Cómo TRYON recopila, utiliza y protege la información de sus usuarios.",
+  alternates: { canonical: "/privacy" },
+  openGraph: { url: "/privacy" },
 };
 
 export default function PrivacyPage() {

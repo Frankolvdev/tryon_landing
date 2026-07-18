@@ -11,7 +11,7 @@ import { PricingSection } from "../features/pricing/components/pricing-section";
 
 export default function Home() {
   return (
-    <main>
+    <main id="main-content">
       <div className="landingShell">
         <SiteHeader />
         <HeroSection />

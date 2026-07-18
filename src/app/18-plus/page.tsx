@@ -1,7 +1,11 @@
 import type { Metadata } from "next";
 import { LegalPage } from "@/components/legal/legal-page";
 
-export const metadata: Metadata = { title: "Aviso para mayores de edad", description: "Requisitos de edad y reglas aplicables al contenido para adultos en TRYON." };
+export const metadata: Metadata = {
+  title: "Aviso para mayores de edad", description: "Requisitos de edad y reglas aplicables al contenido para adultos en TRYON.",
+  alternates: { canonical: "/18-plus" },
+  openGraph: { url: "/18-plus" },
+};
 
 export default function AdultsOnlyPage() {
   return <LegalPage eyebrow="Acceso responsable" title="Aviso para mayores de edad" description="Determinadas funciones o categorías pueden requerir confirmar que eres una persona adulta y que el contenido se utiliza con consentimiento." updatedAt="18 de julio de 2026" sections={[

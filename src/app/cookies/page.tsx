@@ -1,7 +1,11 @@
 import type { Metadata } from "next";
 import { LegalPage } from "@/components/legal/legal-page";
 
-export const metadata: Metadata = { title: "Política de cookies", description: "Información sobre cookies y tecnologías similares utilizadas por TRYON." };
+export const metadata: Metadata = {
+  title: "Política de cookies", description: "Información sobre cookies y tecnologías similares utilizadas por TRYON.",
+  alternates: { canonical: "/cookies" },
+  openGraph: { url: "/cookies" },
+};
 
 export default function CookiesPage() {
   return <LegalPage eyebrow="Preferencias del navegador" title="Política de cookies" description="Detallamos cómo pueden utilizarse cookies y tecnologías similares para que el sitio funcione de forma segura y eficiente." updatedAt="18 de julio de 2026" sections={[

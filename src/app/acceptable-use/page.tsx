@@ -1,7 +1,11 @@
 import type { Metadata } from "next";
 import { LegalPage } from "@/components/legal/legal-page";
 
-export const metadata: Metadata = { title: "Política de uso aceptable", description: "Reglas para un uso seguro y responsable de TRYON." };
+export const metadata: Metadata = {
+  title: "Política de uso aceptable", description: "Reglas para un uso seguro y responsable de TRYON.",
+  alternates: { canonical: "/acceptable-use" },
+  openGraph: { url: "/acceptable-use" },
+};
 
 export default function AcceptableUsePage() {
   return <LegalPage eyebrow="Seguridad y comunidad" title="Política de uso aceptable" description="TRYON debe utilizarse de forma legal, consentida y respetuosa. Estas reglas protegen a usuarios, terceros y la infraestructura del servicio." updatedAt="18 de julio de 2026" sections={[

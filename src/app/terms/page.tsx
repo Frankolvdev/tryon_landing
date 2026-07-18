@@ -1,7 +1,11 @@
 import type { Metadata } from "next";
 import { LegalPage } from "@/components/legal/legal-page";
 
-export const metadata: Metadata = { title: "Términos de uso", description: "Condiciones generales para utilizar TRYON." };
+export const metadata: Metadata = {
+  title: "Términos de uso", description: "Condiciones generales para utilizar TRYON.",
+  alternates: { canonical: "/terms" },
+  openGraph: { url: "/terms" },
+};
 
 export default function TermsPage() {
   return <LegalPage eyebrow="Condiciones del servicio" title="Términos de uso" description="Estas condiciones regulan el acceso a TRYON y el uso responsable de sus funciones de prueba virtual." updatedAt="18 de julio de 2026" sections={[
