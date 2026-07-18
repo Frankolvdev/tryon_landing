@@ -62,63 +62,40 @@ export function TrustPrivacySection() {
         </h2>
         <div className={styles.trustIntro}>
           <div className={styles.trustVisual} aria-hidden="true">
-            <div className={styles.hudGrid} />
-            <div className={styles.scanLine} />
-            <div className={styles.holoStage}>
-              <span className={styles.stageRing} />
-              <span className={styles.stageRingInner} />
-              <span className={styles.stageBeam} />
+            <div className={styles.holoBackdrop} />
+            <div className={styles.holoFigure}>
+              <img
+                src="/images/landing/trust/holographic-fashion-core.webp"
+                alt=""
+                className={styles.holoFigureImage}
+              />
+              <span className={styles.figureScan} />
+              <span className={styles.figureGlow} />
             </div>
 
-            <div className={styles.holoWoman}>
-              <svg viewBox="0 0 220 430" role="presentation">
-                <defs>
-                  <linearGradient id="womanStroke" x1="0" y1="0" x2="1" y2="1">
-                    <stop offset="0" stopColor="#4e9dff" />
-                    <stop offset=".48" stopColor="#ff4964" />
-                    <stop offset="1" stopColor="#9b3dff" />
-                  </linearGradient>
-                </defs>
-                <g fill="none" stroke="url(#womanStroke)" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-                  <ellipse cx="111" cy="46" rx="28" ry="34" />
-                  <path d="M86 42c8-25 43-31 55-6 6 12 3 28-5 39" />
-                  <path d="M94 74c-5 14-7 27-4 43l-18 61 20 76-6 122" />
-                  <path d="M129 76c8 18 9 31 5 47l19 54-17 80 9 118" />
-                  <path d="M91 111c14 12 31 13 45 1" />
-                  <path d="M83 129c22 17 58 19 77 0" />
-                  <path d="M90 176c16 12 37 13 53 0" />
-                  <path d="M91 254c15 10 31 10 46 0" />
-                  <path d="M83 377l-16 30h26l8-30" />
-                  <path d="M145 375l10 32h25l-21-32" />
-                  <path d="M74 176 48 261l15 13 24-68" />
-                  <path d="M153 176l25 80-14 14-23-64" />
-                  <path d="M98 36c9 6 18 8 30 6" />
-                </g>
-              </svg>
-              <span className={styles.bodyScan} />
-              <span className={styles.bodyGlow} />
+            <div className={styles.orbitScene}>
+              <div className={`${styles.garmentCard} ${styles.garmentDress}`}>
+                <svg viewBox="0 0 90 110" role="presentation"><path d="M36 10h18l5 18 17 50-31 20-31-20 17-50z" /></svg>
+                <span>Vestido</span>
+              </div>
+              <div className={`${styles.garmentCard} ${styles.garmentTop}`}>
+                <svg viewBox="0 0 90 110" role="presentation"><path d="M29 16l16-8 16 8 16 15-12 14-6-8v49H31V37l-6 8-12-14z" /></svg>
+                <span>Top</span>
+              </div>
+              <div className={`${styles.garmentCard} ${styles.garmentShorts}`}>
+                <svg viewBox="0 0 90 110" role="presentation"><path d="M20 20h50l-4 58-21-10-21 10zM45 20v48" /></svg>
+                <span>Shorts</span>
+              </div>
+              <div className={`${styles.garmentCard} ${styles.garmentJacket}`}>
+                <svg viewBox="0 0 90 110" role="presentation"><path d="M29 14l16-7 16 7 15 20-10 11-8-10v53H32V35l-8 10-10-11zM45 14v74" /></svg>
+                <span>Chaqueta</span>
+              </div>
             </div>
 
-            <div className={`${styles.outfitCard} ${styles.outfitDress}`}>
-              <svg viewBox="0 0 90 110" role="presentation"><path d="M36 10h18l5 18 17 50-31 20-31-20 17-50z" /></svg>
-              <span>Vestido</span>
-            </div>
-            <div className={`${styles.outfitCard} ${styles.outfitTop}`}>
-              <svg viewBox="0 0 90 110" role="presentation"><path d="M29 16l16-8 16 8 16 15-12 14-6-8v49H31V37l-6 8-12-14z" /></svg>
-              <span>Top</span>
-            </div>
-            <div className={`${styles.outfitCard} ${styles.outfitShorts}`}>
-              <svg viewBox="0 0 90 110" role="presentation"><path d="M20 20h50l-4 58-21-10-21 10zM45 20v48" /></svg>
-              <span>Shorts</span>
-            </div>
-            <div className={`${styles.outfitCard} ${styles.outfitJacket}`}>
-              <svg viewBox="0 0 90 110" role="presentation"><path d="M29 14l16-7 16 7 15 20-10 11-8-10v53H32V35l-8 10-10-11zM45 14v74" /></svg>
-              <span>Chaqueta</span>
-            </div>
-
-            <span className={`${styles.dataTag} ${styles.tagPrivacy}`}>Privacidad</span>
-            <span className={`${styles.dataTag} ${styles.tagReal}`}>Tecnología real</span>
-            <span className={`${styles.dataTag} ${styles.tagClear}`}>Transparencia</span>
+            <span className={styles.orbitLineOne} />
+            <span className={styles.orbitLineTwo} />
+            <span className={styles.platformGlow} />
+            <span className={styles.particleField} />
           </div>
           <p>
             La landing explica con claridad qué es demostrativo y qué estará conectado al sistema real,

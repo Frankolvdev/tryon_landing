@@ -701,3 +701,253 @@
   .stageBeam,
   .bodyGlow { animation: none; }
 }
+
+/* 06Y: escena holográfica de moda con profundidad y órbita realista */
+.trustVisual {
+  position: relative;
+  min-height: clamp(22rem, 34vw, 28rem);
+  overflow: hidden;
+  border: 1px solid rgba(255, 74, 102, .18);
+  border-radius: 1.4rem;
+  background:
+    radial-gradient(circle at 50% 54%, rgba(255, 29, 68, .16), transparent 42%),
+    linear-gradient(180deg, rgba(13, 4, 10, .98), rgba(3, 5, 10, .98));
+  box-shadow: inset 0 0 60px rgba(255, 37, 75, .08), 0 30px 80px rgba(0,0,0,.35);
+  perspective: 1200px;
+}
+
+.holoBackdrop {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(rgba(255,255,255,.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.03) 1px, transparent 1px),
+    radial-gradient(circle at 20% 28%, rgba(52, 139, 255, .14), transparent 28%),
+    radial-gradient(circle at 80% 70%, rgba(255, 44, 82, .18), transparent 30%);
+  background-size: 36px 36px, 36px 36px, auto, auto;
+  mask-image: linear-gradient(to bottom, #000 0 82%, transparent 100%);
+  opacity: .72;
+}
+
+.holoFigure {
+  position: absolute;
+  inset: 6% 11% 8%;
+  display: grid;
+  place-items: center;
+  animation: figureFloat 4.6s ease-in-out infinite;
+  transform-style: preserve-3d;
+  z-index: 3;
+}
+
+.holoFigureImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 1.05rem;
+  filter: saturate(1.08) contrast(1.05) drop-shadow(0 0 28px rgba(255, 46, 83, .22));
+  mix-blend-mode: screen;
+  opacity: .9;
+}
+
+.figureScan {
+  position: absolute;
+  left: 8%;
+  right: 8%;
+  top: 12%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #57a3ff 28%, #fff 50%, #ff4566 72%, transparent);
+  box-shadow: 0 0 12px #57a3ff, 0 0 24px #ff4566;
+  animation: scanFigure 3.8s ease-in-out infinite;
+}
+
+.figureGlow {
+  position: absolute;
+  inset: 16% 28% 10%;
+  border-radius: 45%;
+  background: radial-gradient(circle, rgba(255, 53, 87, .22), rgba(57, 136, 255, .08) 50%, transparent 72%);
+  filter: blur(24px);
+  animation: glowFigure 3s ease-in-out infinite;
+  pointer-events: none;
+}
+
+.orbitScene {
+  position: absolute;
+  inset: 0;
+  transform-style: preserve-3d;
+  z-index: 5;
+  animation: orbitSceneTilt 8s ease-in-out infinite;
+}
+
+.garmentCard {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: clamp(4.4rem, 14%, 6.4rem);
+  aspect-ratio: .82;
+  display: grid;
+  place-items: center;
+  padding: .5rem;
+  border: 1px solid rgba(255,255,255,.14);
+  border-radius: .95rem;
+  background: linear-gradient(145deg, rgba(255,255,255,.08), rgba(4,6,12,.72));
+  backdrop-filter: blur(12px);
+  box-shadow: 0 16px 38px rgba(0,0,0,.42), inset 0 0 22px rgba(255,64,96,.08);
+  transform-style: preserve-3d;
+  animation: garmentOrbit 10s linear infinite;
+}
+
+.garmentCard::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(135deg, #55a4ff, transparent 34%, transparent 66%, #ff4566);
+  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  mask-composite: exclude;
+  opacity: .72;
+}
+
+.garmentCard svg {
+  width: 72%;
+  fill: none;
+  stroke: #ff5974;
+  stroke-width: 2.4;
+  filter: drop-shadow(0 0 8px rgba(255, 71, 100, .72));
+}
+
+.garmentCard span {
+  color: #eceaf0;
+  font-size: .52rem;
+  font-weight: 800;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+.garmentDress { animation-delay: 0s; }
+.garmentTop { animation-delay: -2.5s; }
+.garmentShorts { animation-delay: -5s; }
+.garmentJacket { animation-delay: -7.5s; }
+
+.orbitLineOne,
+.orbitLineTwo {
+  position: absolute;
+  left: 50%;
+  top: 52%;
+  width: 76%;
+  height: 35%;
+  border: 1px solid rgba(255, 70, 101, .52);
+  border-radius: 50%;
+  transform: translate(-50%, -50%) rotate(-8deg);
+  box-shadow: 0 0 18px rgba(255, 70, 101, .25);
+  z-index: 4;
+  animation: orbitPulse 4s ease-in-out infinite;
+}
+
+.orbitLineTwo {
+  width: 62%;
+  height: 24%;
+  border-color: rgba(74, 151, 255, .52);
+  transform: translate(-50%, -50%) rotate(10deg);
+  animation-delay: -2s;
+}
+
+.platformGlow {
+  position: absolute;
+  left: 50%;
+  bottom: 6%;
+  width: 58%;
+  height: 4.2rem;
+  transform: translateX(-50%);
+  border-radius: 50%;
+  background: radial-gradient(ellipse at center, rgba(255, 63, 95, .36), rgba(71, 145, 255, .12) 42%, transparent 72%);
+  filter: blur(2px) drop-shadow(0 0 24px rgba(255, 58, 90, .35));
+  z-index: 2;
+  animation: platformBreathe 3.2s ease-in-out infinite;
+}
+
+.particleField {
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(circle, rgba(255,255,255,.72) 0 1px, transparent 1.6px),
+    radial-gradient(circle, rgba(255,63,96,.8) 0 1px, transparent 1.7px),
+    radial-gradient(circle, rgba(72,148,255,.75) 0 1px, transparent 1.7px);
+  background-size: 83px 83px, 127px 127px, 169px 169px;
+  background-position: 13px 8px, 41px 23px, 9px 56px;
+  opacity: .38;
+  animation: particlesDrift 12s linear infinite;
+  pointer-events: none;
+  z-index: 6;
+}
+
+@keyframes figureFloat {
+  0%, 100% { transform: translateY(0) rotateX(0deg) rotateY(-.6deg); }
+  50% { transform: translateY(-.7rem) rotateX(.5deg) rotateY(.8deg); }
+}
+
+@keyframes garmentOrbit {
+  0% { transform: translate(-50%, -50%) rotateY(0deg) translateZ(190px) rotateY(0deg) translateY(-14px); opacity: .72; }
+  25% { transform: translate(-50%, -50%) rotateY(90deg) translateZ(190px) rotateY(-90deg) translateY(8px); opacity: 1; }
+  50% { transform: translate(-50%, -50%) rotateY(180deg) translateZ(190px) rotateY(-180deg) translateY(16px); opacity: .38; }
+  75% { transform: translate(-50%, -50%) rotateY(270deg) translateZ(190px) rotateY(-270deg) translateY(-4px); opacity: 1; }
+  100% { transform: translate(-50%, -50%) rotateY(360deg) translateZ(190px) rotateY(-360deg) translateY(-14px); opacity: .72; }
+}
+
+@keyframes orbitSceneTilt {
+  0%,100% { transform: rotateX(1deg) rotateY(-2deg); }
+  50% { transform: rotateX(-1deg) rotateY(2deg); }
+}
+
+@keyframes scanFigure {
+  0%, 100% { transform: translateY(0); opacity: .12; }
+  15% { opacity: .95; }
+  74% { transform: translateY(17rem); opacity: .82; }
+  88% { opacity: 0; }
+}
+
+@keyframes glowFigure {
+  0%,100% { opacity: .46; transform: scale(.96); }
+  50% { opacity: .92; transform: scale(1.06); }
+}
+
+@keyframes orbitPulse {
+  0%,100% { opacity: .45; filter: brightness(.8); }
+  50% { opacity: .95; filter: brightness(1.25); }
+}
+
+@keyframes platformBreathe {
+  0%,100% { opacity: .56; transform: translateX(-50%) scaleX(.96); }
+  50% { opacity: 1; transform: translateX(-50%) scaleX(1.04); }
+}
+
+@keyframes particlesDrift {
+  to { background-position: 96px 76px, -86px 142px, 142px -78px; }
+}
+
+@media (max-width: 900px) {
+  .trustVisual { min-height: 24rem; }
+  .garmentCard { width: 5rem; }
+}
+
+@media (max-width: 620px) {
+  .trustVisual { min-height: 21rem; }
+  .holoFigure { inset: 7% 4% 10%; }
+  .garmentCard { width: 4rem; }
+  .garmentCard span { display: none; }
+  .orbitLineOne { width: 88%; }
+  .orbitLineTwo { width: 72%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .holoFigure,
+  .figureScan,
+  .figureGlow,
+  .orbitScene,
+  .garmentCard,
+  .orbitLineOne,
+  .orbitLineTwo,
+  .platformGlow,
+  .particleField { animation: none !important; }
+}
