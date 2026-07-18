@@ -1,3 +1,5 @@
+import Link from "next/link";
+import type { Route } from "next";
 import { Brand } from "@/components/layout/brand";
 import { Container } from "@/components/layout/container";
 
@@ -6,24 +8,26 @@ const footerGroups = [
     title: "Producto",
     links: [
       { label: "Tecnología", href: "/#principles" },
-      { label: "Experiencia", href: "/#components" },
-      { label: "Planes", pending: true },
+      { label: "Cómo funciona", href: "/#how-it-works" },
+      { label: "Planes", href: "/#pricing" },
     ],
   },
   {
-    title: "Compañía",
+    title: "Recursos",
     links: [
-      { label: "Preguntas frecuentes", pending: true },
-      { label: "Contacto", pending: true },
-      { label: "Estado del servicio", pending: true },
+      { label: "Preguntas frecuentes", href: "/#faq" },
+      { label: "Privacidad y seguridad", href: "/#privacy" },
+      { label: "Comenzar", href: "/#pricing" },
     ],
   },
   {
     title: "Legal",
     links: [
-      { label: "Privacidad", pending: true },
-      { label: "Términos de uso", pending: true },
-      { label: "Cookies", pending: true },
+      { label: "Privacidad", href: "/privacy" },
+      { label: "Términos de uso", href: "/terms" },
+      { label: "Cookies", href: "/cookies" },
+      { label: "Uso aceptable", href: "/acceptable-use" },
+      { label: "Mayores de 18", href: "/18-plus" },
     ],
   },
 ];
@@ -35,31 +39,17 @@ export function SiteFooter() {
         <div className="site-footer__top">
           <div className="site-footer__identity">
             <Brand compact />
-            <p>
-              Prueba virtual de prendas impulsada por inteligencia artificial,
-              diseñada para una experiencia rápida, privada y personalizada.
-            </p>
+            <p>Prueba virtual de prendas impulsada por inteligencia artificial, diseñada para una experiencia rápida, privada y personalizada.</p>
           </div>
-
           <div className="site-footer__navigation">
             {footerGroups.map((group) => (
               <div key={group.title}>
                 <h2>{group.title}</h2>
-                {group.links.map((link) => (
-                  <a
-                    key={link.label}
-                    href={link.pending ? undefined : link.href}
-                    aria-disabled={link.pending || undefined}
-                    title={link.pending ? "Disponible en un próximo módulo" : undefined}
-                  >
-                    {link.label}
-                  </a>
-                ))}
+                {group.links.map((link) => <Link key={link.href} href={link.href as Route}>{link.label}</Link>)}
               </div>
             ))}
           </div>
         </div>
-
         <div className="site-footer__bottom">
           <p>© {new Date().getFullYear()} TRYON. Todos los derechos reservados.</p>
           <p>AI Virtual Try-On Platform</p>
