@@ -8,6 +8,7 @@ const navigation = [
   { href: "/#features", label: "Tecnología" },
   { href: "/#como-funciona", label: "Cómo funciona" },
   { href: "/#gallery", label: "Galería" },
+  { href: "/#tokens", label: "Tokens" },
   { href: "/#pricing", label: "Planes" },
   { href: "/#faq", label: "FAQ" },
 ];

@@ -7,6 +7,7 @@ import { PoweredByAiSection } from "../components/landing/powered-by-ai-section"
 import { SocialProofSection } from "../components/landing/social-proof-section";
 import { TrustPrivacySection } from "../components/landing/trust-privacy-section";
 import { PricingSection } from "../features/pricing/components/pricing-section";
+import { TokenSection } from "../features/tokens/components/token-section";
 
 export default function Home() {
   return (
@@ -29,6 +30,7 @@ export default function Home() {
       <LiveGallerySection />
       <TrustPrivacySection />
       <SocialProofSection />
+      <TokenSection />
       <PricingSection />
       <FaqSection />
       <FinalCtaSection />

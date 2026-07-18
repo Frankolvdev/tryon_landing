@@ -1,127 +1,133 @@
-"use client";
-
-import { useEffect, useRef, useState } from "react";
+import { getPublicSubscriptionPlans } from "@/features/pricing/api";
+import type { SubscriptionPlan } from "@/features/pricing/types";
 import styles from "./pricing-section.module.css";
 
-const promises = [
-  {
-    icon: "∞",
-    title: "Sin compra mínima",
-    text: "Empieza con los tokens que realmente necesitas, sin paquetes inflados.",
-  },
-  {
-    icon: "◌",
-    title: "Sin mensualidad forzosa",
-    text: "Tu saldo queda listo para usar cuando llegue tu siguiente idea.",
-  },
-  {
-    icon: "↗",
-    title: "Crece a tu ritmo",
-    text: "Recarga cuando quieras y adapta tu consumo a cada proyecto.",
-  },
-];
+function intervalLabel(interval: string): string {
+  const labels: Record<string, string> = {
+    day: "día",
+    week: "semana",
+    month: "mes",
+    year: "año",
+  };
+  return labels[interval.toLowerCase()] ?? interval;
+}
 
-export function PricingSection() {
-  const sectionRef = useRef<HTMLElement>(null);
-  const [active, setActive] = useState(0);
+function formatPrice(plan: SubscriptionPlan): string {
+  const amount = Number(plan.price_amount);
+  if (!Number.isFinite(amount)) return String(plan.price_amount);
 
-  useEffect(() => {
-    const timer = window.setInterval(() => {
-      setActive((current) => (current + 1) % promises.length);
-    }, 3200);
+  try {
+    return new Intl.NumberFormat("es-MX", {
+      style: "currency",
+      currency: plan.currency,
+      maximumFractionDigits: amount % 1 === 0 ? 0 : 2,
+    }).format(amount);
+  } catch {
+    return `${amount.toLocaleString("es-MX")} ${plan.currency}`;
+  }
+}
 
-    return () => window.clearInterval(timer);
-  }, []);
+function isHighlighted(plan: SubscriptionPlan): boolean {
+  return plan.metadata?.featured === true || plan.metadata?.popular === true;
+}
 
-  function handlePointerMove(event: React.PointerEvent<HTMLElement>) {
-    const section = sectionRef.current;
-    if (!section) return;
+function PricingCard({ plan }: { plan: SubscriptionPlan }) {
+  const highlighted = isHighlighted(plan);
 
-    const bounds = section.getBoundingClientRect();
-    section.style.setProperty("--pointer-x", `${event.clientX - bounds.left}px`);
-    section.style.setProperty("--pointer-y", `${event.clientY - bounds.top}px`);
+  return (
+    <article className={`${styles.card} ${highlighted ? styles.highlighted : ""}`}>
+      {highlighted ? <span className={styles.popular}>Más popular</span> : null}
+      <div className={styles.cardHeader}>
+        <span className={styles.planKey}>{plan.key}</span>
+        <h3>{plan.name}</h3>
+        {plan.description ? <p>{plan.description}</p> : null}
+      </div>
+
+      <div className={styles.priceRow}>
+        <strong>{formatPrice(plan)}</strong>
+        <span>/ {intervalLabel(plan.billing_interval)}</span>
+      </div>
+
+      <div className={styles.allowances}>
+        <div>
+          <strong>{plan.tokens_per_period.toLocaleString("es-MX")}</strong>
+          <span>tokens por periodo</span>
+        </div>
+        {plan.max_generations_per_period ? (
+          <div>
+            <strong>{plan.max_generations_per_period.toLocaleString("es-MX")}</strong>
+            <span>generaciones máximas</span>
+          </div>
+        ) : null}
+      </div>
+
+      <ul className={styles.features}>
+        {plan.features.map((feature) => (
+          <li key={feature}>
+            <span aria-hidden="true">✓</span>
+            {feature}
+          </li>
+        ))}
+      </ul>
+
+      <a className={styles.cta} href="#register" data-plan-key={plan.key}>
+        Elegir {plan.name}
+        <span aria-hidden="true">→</span>
+      </a>
+
+      {!plan.stripe_configured ? (
+        <p className={styles.availability}>Disponible próximamente para contratación.</p>
+      ) : null}
+    </article>
+  );
+}
+
+export async function PricingSection() {
+  let plans: SubscriptionPlan[] = [];
+  let unavailable = false;
+
+  try {
+    plans = await getPublicSubscriptionPlans();
+  } catch {
+    unavailable = true;
   }
 
   return (
-    <section
-      ref={sectionRef}
-      className={styles.section}
-      id="pricing"
-      aria-labelledby="token-title"
-      onPointerMove={handlePointerMove}
-    >
-      <div className={styles.ambient} aria-hidden="true" />
-      <div className={styles.grid} aria-hidden="true" />
-
+    <section className={styles.section} id="pricing" aria-labelledby="pricing-title">
+      <div className={styles.glow} aria-hidden="true" />
       <div className={styles.inner}>
-        <div className={styles.copy}>
-          <span className={styles.eyebrow}>TOKENS A TU MANERA</span>
-          <h2 id="token-title">
-            Compra solo lo que necesitas.
-            <strong> Nada más.</strong>
-          </h2>
-          <p className={styles.lead}>
-            Sin planes que te obliguen a pagar de más. Tú decides cuántos tokens
-            agregar y cuándo utilizarlos para crear tus próximos looks.
+        <header className={styles.heading}>
+          <span>PLANES DINÁMICOS</span>
+          <h2 id="pricing-title">Elige el plan que se adapta a tu creatividad.</h2>
+          <p>
+            Esta información se obtiene directamente del backend. Los cambios de
+            planes, precios, tokens y beneficios realizados desde el BackOffice se
+            reflejan aquí sin modificar la landing.
           </p>
+        </header>
 
-          <div className={styles.promiseRail} role="list" aria-label="Ventajas del sistema de tokens">
-            {promises.map((promise, index) => (
-              <button
-                type="button"
-                role="listitem"
-                className={`${styles.promise} ${active === index ? styles.promiseActive : ""}`}
-                key={promise.title}
-                onClick={() => setActive(index)}
-                aria-pressed={active === index}
-              >
-                <span className={styles.promiseIcon} aria-hidden="true">{promise.icon}</span>
-                <span>
-                  <strong>{promise.title}</strong>
-                  <small>{promise.text}</small>
-                </span>
-              </button>
+        {unavailable ? (
+          <div className={styles.state} role="status">
+            <strong>No pudimos cargar los planes en este momento.</strong>
+            <span>Verifica que el backend esté disponible e inténtalo nuevamente.</span>
+          </div>
+        ) : plans.length === 0 ? (
+          <div className={styles.state} role="status">
+            <strong>Aún no hay planes públicos disponibles.</strong>
+            <span>Activa al menos un plan público desde el BackOffice.</span>
+          </div>
+        ) : (
+          <div className={styles.grid}>
+            {plans.map((plan) => (
+              <PricingCard key={plan.id} plan={plan} />
             ))}
           </div>
+        )}
 
-          <div className={styles.actions}>
-            <a className={styles.primary} href="#register">
-              Explorar opciones de tokens
-              <span aria-hidden="true">↗</span>
-            </a>
-            <span className={styles.microcopy}>Sin renovación automática obligatoria</span>
-          </div>
-        </div>
-
-        <div className={styles.visual} aria-label="Representación animada de tokens flexibles">
-          <div className={styles.orbitStage}>
-            <div className={styles.outerOrbit} aria-hidden="true">
-              <i className={styles.tokenA}>T</i>
-              <i className={styles.tokenB}>T</i>
-              <i className={styles.tokenC}>T</i>
-            </div>
-            <div className={styles.middleOrbit} aria-hidden="true" />
-            <div className={styles.core}>
-              <span className={styles.coreHalo} aria-hidden="true" />
-              <span className={styles.coreLabel}>TU SALDO</span>
-              <strong>Flexible</strong>
-              <small>Recarga cuando lo necesites</small>
-            </div>
-            <div className={styles.scan} aria-hidden="true" />
-          </div>
-
-          <div className={styles.flowCard}>
-            <span>Tu flujo</span>
-            <div className={styles.flowSteps}>
-              <strong>Elige</strong>
-              <i aria-hidden="true">→</i>
-              <strong>Recarga</strong>
-              <i aria-hidden="true">→</i>
-              <strong>Crea</strong>
-            </div>
-            <p>Sin comprometerte con más de lo que vas a usar.</p>
-          </div>
-        </div>
+        <p className={styles.note}>
+          Los botones conservan el plan seleccionado. El checkout autenticado se
+          conectará en el módulo de facturación correspondiente.
+        </p>
       </div>
     </section>
   );
