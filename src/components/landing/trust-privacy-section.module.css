@@ -294,8 +294,7 @@
   .arrow { transition: none; }
 }
 
-
-/* 06K — scoped cinematic light sweep; no global selectors */
-.lightSweep{position:absolute;z-index:8;top:-22%;bottom:-22%;left:-34%;width:18%;pointer-events:none;opacity:0;transform:skewX(-17deg);background:linear-gradient(90deg,transparent,rgba(84,211,255,.035),rgba(226,249,255,.28),rgba(255,42,82,.07),transparent);filter:blur(5px);mix-blend-mode:screen;animation:sectionLightSweep 13.0s ease-in-out 6.5s infinite}
-@keyframes sectionLightSweep{0%,58%{left:-34%;opacity:0}62%{opacity:.28}76%{opacity:.16}82%,100%{left:118%;opacity:0}}
+/* 06L — scoped alternating cinematic light sweep */
+.lightSweep{position:absolute;z-index:8;top:-22%;bottom:-22%;right:-34%;width:18%;pointer-events:none;opacity:0;transform:skewX(17deg);background:linear-gradient(90deg,transparent,rgba(255,42,82,.07),rgba(226,249,255,.28),rgba(84,211,255,.035),transparent);filter:blur(5px);mix-blend-mode:screen;animation:sectionLightSweepRTL 13.0s ease-in-out 6.5s infinite}
+@keyframes sectionLightSweepRTL{0%,58%{right:-34%;opacity:0}62%{opacity:.28}76%{opacity:.16}82%,100%{right:118%;opacity:0}}
 @media(prefers-reduced-motion:reduce){.lightSweep{display:none}}
